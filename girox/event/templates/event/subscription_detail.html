@@ -1,0 +1,19 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2 class="text-center title">Inscrição efetuada com sucesso.</h2>
+                <p>Estes foram os dados que você nos forneceu em sua inscrição:</p>
+                <ul>
+                    <li>Nome: {{ subscription.name }}</li>
+                    <li>RG: {{ subscription.rg }}</li>
+                    <li>Email: {{ subscription.email }}</li>
+                    <li>Telefone: {{ subscription.phone }}</li>
+                    <li>Cidade: {{ subscription.city }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

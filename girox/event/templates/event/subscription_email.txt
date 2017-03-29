@@ -1,0 +1,14 @@
+Inscrição efetuada com sucesso.
+
+Estes foram os dados que você nos forneceu em sua inscrição:
+
+Nome: {{ subscription.name }}
+RG: {{ subscription.rg }}
+Email: {{ subscription.email }}
+Telefone: {{ subscription.phone }}
+Cidade: {{ subscription.city }}
+
+
+Atenciosamente,
+--
+Equipe GiroX
