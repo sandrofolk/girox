@@ -19,3 +19,7 @@ class HomePageView(TemplateView):
 # home = TemplateView.as_view(
 #     template_name='frontend/index.html'
 # )
+
+coming_soon = TemplateView.as_view(
+    template_name='frontend/coming_soon.html'
+)
