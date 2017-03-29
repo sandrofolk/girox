@@ -3,6 +3,8 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.views.generic.edit import CreateView
 
+from girox.event.models import Event
+
 
 class EmailCreateMixin:
     email_to = None
@@ -48,7 +50,14 @@ class EmailCreateMixin:
 
 class EmailCreateView(EmailCreateMixin, CreateView):
     def form_valid(self, form):
-        # print(form)
         response = super().form_valid(form)
         self.send_mail()
         return response
+
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super(EmailCreateView, self).get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['event'] = Event.objects.get(pk=self.kwargs['event'])
+        return initial

@@ -21,15 +21,16 @@ class Subscription(models.Model):
     phone = models.CharField('telefone', max_length=20)
     city = models.CharField('cidade-UF', max_length=255)
     created_at = models.DateTimeField('criado em', auto_now_add=True)
-    # event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'inscrição'
         verbose_name_plural = 'inscrições'
         ordering = ('-created_at',)
+        unique_together = ("rg", "event")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return r('events:subscription_detail', self.pk)
+        return r('events:subscription_detail', self.event.pk, self.pk)

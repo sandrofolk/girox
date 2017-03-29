@@ -19,14 +19,16 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
-from girox.frontend.views import home
+# from girox.frontend.views import home
+from girox.frontend.views import HomePageView
 
 
 urlpatterns = i18n_patterns(
     url(_(r'^admin/'), admin.site.urls),
 
     # url(r'^$', RedirectView.as_view(url='/admin')),
-    url(r'^$', home, name='home'),
+    # url(r'^$', home, name='home'),
+    url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^eventos/', include('girox.event.urls', namespace='events')),
 
     url(r'^i18n/', include('django.conf.urls.i18n')),

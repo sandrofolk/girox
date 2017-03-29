@@ -1,30 +1,5 @@
 {% extends "frontend/base.html" %}
 
 {% block content %}
-    <div class="section landing-section">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <h2 class="title">Próximos eventos</h2>
-                <br />
-                {% for event in event_list %}
-                <div class="card card-plain card-blog">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="card-title">
-                                <a href="#pablo">{{ event.title }}</a>
-                            </h3>
-                            <p class="card-description">
-                                {{ event.description }}
-                            </p>
-                            <a href="{% url 'events:subscription_new' %}" class="btn btn-primary btn-raised">
-                                Inscrição
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-    </div>
+    {% include 'event/events.html' %}
 {% endblock content %}

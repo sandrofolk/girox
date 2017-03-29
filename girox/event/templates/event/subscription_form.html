@@ -9,12 +9,14 @@
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     <div class="row">
+                        {{ form.event.as_hidden }}
+
                         <div class="col-md-6">
                             <div class="form-group label-floating">
                                 <label class="control-label">{{ form.name.label }}</label>
                                 {{ form.name.errors }}
-                                {#{{ form.name }}#}
                                 <input type="text" class="form-control" id="id_name" maxlength="255" name="name" required>
+{#                                {{ form.name }}#}
                             </div>
                         </div>
                         <div class="col-md-6">

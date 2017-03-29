@@ -20,13 +20,18 @@ class SubscriptionModelTest(TestCase):
         #     city='Apucarana-PR'
         # )
 
+        self.event = Event.objects.create(
+            title='Evento 1',
+            description='Descrição do evento...'
+        )
         self.name = 'Participante 1'
         self.subscription = Subscription.objects.create(
             name=self.name,
             rg='1234567890',
             email='email@email.com',
             phone='(012) 3 4567-8900',
-            city='Apucarana-PR'
+            city='Apucarana-PR',
+            event=self.event
         )
 
     def test_create(self):
@@ -41,5 +46,5 @@ class SubscriptionModelTest(TestCase):
         self.assertEqual(self.name, str(self.subscription))
 
     def test_get_absolute_url(self):
-        url = r('events:subscription_detail', self.subscription.pk)
+        url = r('events:subscription_detail', self.event.pk, self.subscription.pk)
         self.assertEqual(url, self.subscription.get_absolute_url())
