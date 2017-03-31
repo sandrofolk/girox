@@ -1,18 +1,20 @@
 {% extends "frontend/base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="section landing-section">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h2 class="text-center title">Inscrição efetuada com sucesso.</h2>
-                <p>Estes foram os dados que você nos forneceu em sua inscrição:</p>
+                <h2 class="text-center title">Inscrição efetuada com sucesso!</h2>
+                <p>Você deve imprimir o <a href="{% static "pdf/Termo_de_Responsabilidade.pdf" %}" target="_blank">Termo de Responsabilidade</a> e levar no dia da prova.</p>
+                <!-- <p>Estes foram os dados que você nos forneceu em sua inscrição:</p>
                 <ul>
                     <li>Nome: {{ subscription.name }}</li>
                     <li>RG: {{ subscription.rg }}</li>
                     <li>Email: {{ subscription.email }}</li>
                     <li>Telefone: {{ subscription.phone }}</li>
                     <li>Cidade: {{ subscription.city }}</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>

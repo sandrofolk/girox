@@ -1,4 +1,5 @@
 {% extends "frontend/base.html" %}
+{% load static %}
 
 {% block content %}
     <div class="section landing-section">
@@ -48,6 +49,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="accepted" required>
+                            Concordo com os termos do <a href="{% static "pdf/Regulamento.pdf" %}" target="_blank">regulamento</a>!
+                        </label>
+                    </div>
+
+                    <!-- <textarea class="form-control" rows="12" cols="32" style="font-family: Tahoma, Verdana, Arial; color: #000000; font-size: 10px; border: 1px solid #2F4F4F; background-color: #FFFFFF" name="S5"
+                    >bla bla bla
+                    </textarea><br />
+                    <img title="Eu Aceito os Termos" src="http://i237.photobucket.com/albums/ff204/centralexpert/widget/termosimaceito.png" alt="Eu Aceito os Termos" width="120" height="16" />
+                    <a target="" rel="nofollow" href="http://google.com.br">
+                    <img title="Eu não aceito os Termos" src="http://i237.photobucket.com/albums/ff204/centralexpert/widget/termonaoaceito.png" alt="Eu não aceito os Termos" width="120" height="16" /></a> -->
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4 text-center">
