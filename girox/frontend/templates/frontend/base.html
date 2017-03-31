@@ -43,11 +43,9 @@
 	    	<a href="{% url 'home' %}">
 	        	<div class="logo-container">
 	                <div class="logo">
-	                    <img class="img-circle img-responsive img-raised" src="{% static "mk_v1.1.1/assets/img/logo2.png" %}" alt="GiroX Logo" rel="tooltip" title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
+	                    <!-- <img class="img-circle img-responsive img-raised" src="{% static "mk_v1.1.1/assets/img/logo2.png" %}" alt="GiroX Logo" rel="tooltip" title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true"> -->
+                        <img src="{% static "mk_v1.1.1/assets/img/gxv.png" %}" alt="GiroX Logo" rel="tooltip" title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
 	                </div>
-	                <!-- <div class="brand">
-	                    GiroX
-	                </div> -->
 				</div>
 	      	</a>
             <!-- <a class="navbar-brand" href="{% url 'home' %}">
@@ -76,7 +74,7 @@
 <div class="wrapper">
     <div class="page-header header-filter big-map"
          data-parallax="active"
-         style="background-image: url('{% static "mk_v1.1.1/assets/img/bg_gx.jpg"%}');">
+         style="background-image: url('{% static "mk_v1.1.1/assets/img/gx capa.png"%}');">
     </div>
 
 	<!-- <div class="header header-filter" style="background-image: url('{% static "mk_v1.1.1/assets/img/gx.png"%}');"> -->
@@ -96,7 +94,7 @@
 	<div class="main main-raised">
 		<div class="container">
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-6 col-xs-offset-3">
                    <div class="profile">
                         <div class="avatar">
@@ -104,7 +102,7 @@
                         </div>
                    </div>
                 </div>
-            </div>
+            </div> -->
 
 			{% block content %}
             {% endblock content %}
