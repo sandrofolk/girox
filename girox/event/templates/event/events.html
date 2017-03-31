@@ -27,7 +27,7 @@
                                 <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
                                 {{ event.description }}
                             </p>
-                            <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-primary btn-raised">
+                            <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
                                 Inscrição
                             </a>
                         </div>
