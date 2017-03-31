@@ -1,6 +1,7 @@
 from django.core import mail
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
+from django.utils import timezone
 
 from girox.event.forms import SubscriptionForm
 from girox.event.models import Event, Subscription
@@ -10,7 +11,9 @@ class SubscriptionNewGet(TestCase):
     def setUp(self):
         self.event = Event.objects.create(
             title='Evento 1',
-            description='Descrição do evento...'
+            description='Descrição do evento...',
+            date=timezone.now(),
+            date_limit_subscription=timezone.now()
         )
         self.resp = self.client.get(r('events:subscription_new', self.event.pk))
 
@@ -50,7 +53,9 @@ class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
         self.event = Event.objects.create(
             title='Evento 1',
-            description='Descrição do evento...'
+            description='Descrição do evento...',
+            date=timezone.now(),
+            date_limit_subscription=timezone.now()
         )
         self.rg = '12345678901'
         data = dict(name='Participante 1', rg=self.rg,

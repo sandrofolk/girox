@@ -8,9 +8,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="card-title">
-                                <a href="#pablo">{{ event.title }}</a>
+                                <a href="#">{{ event.title }}</a>
                             </h3>
                             <p class="card-description">
+                                <h4><strong>Data evento: </strong>{{ event.date|date:"d/m/Y H:i" }}<br></h4>
+                                <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
                                 {{ event.description }}
                             </p>
                             <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-primary btn-raised">

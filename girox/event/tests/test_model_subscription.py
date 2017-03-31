@@ -1,5 +1,6 @@
 from django.test import TestCase
-from datetime import datetime
+import datetime
+from django.utils import timezone
 from django.shortcuts import resolve_url as r
 
 from girox.event.models import Event, Subscription
@@ -22,7 +23,9 @@ class SubscriptionModelTest(TestCase):
 
         self.event = Event.objects.create(
             title='Evento 1',
-            description='Descrição do evento...'
+            description='Descrição do evento...',
+            date=timezone.now(),
+            date_limit_subscription=timezone.now()
         )
         self.name = 'Participante 1'
         self.subscription = Subscription.objects.create(
@@ -39,7 +42,7 @@ class SubscriptionModelTest(TestCase):
 
     def test_created_at(self):
         """ Subscription must have an auto created_at attr. """
-        self.assertIsInstance(self.subscription.created_at, datetime)
+        self.assertIsInstance(self.subscription.created_at, datetime.datetime)
 
     def test_str(self):
         # self.assertEqual(self.name, str(self.event.subscription_set.first()))

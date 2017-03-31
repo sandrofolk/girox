@@ -5,6 +5,8 @@ from django.shortcuts import resolve_url as r
 class Event(models.Model):
     title = models.CharField('título', max_length=255)
     description = models.TextField('descrição')
+    date = models.DateTimeField('data')
+    date_limit_subscription = models.DateTimeField('data limite de inscrição')
 
     class Meta:
         verbose_name = 'evento'
