@@ -31,13 +31,15 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+DEVELOPER = config('DEVELOPER', default=False, cast=bool)
+
 MESSAGE_LEVEL = message_constants.DEBUG
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
 INTERNAL_IPS = ['127.0.0.1', '0.0.0.0']
 
-ADMINS = [('Nome', 'email'),]
+ADMINS = [('Alessandro', 'alessandrolimafolk@gmail.com'),]
 
 AUTH_USER_MODEL = 'authentication.MyUser'
 
@@ -71,6 +73,7 @@ INSTALLED_APPS = [
     'test_without_migrations',
     'django_extensions',
     'debug_toolbar',
+    'storages',
 
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
@@ -106,6 +109,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'girox.frontend.context_processors.context_processor',
             ],
         },
     },
@@ -167,8 +171,48 @@ USE_TZ = True
 USE_THOUSAND_SEPARATOR = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+# S3 AWS
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+#     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+#     'Cache-Control': 'max-age=94608000',
+# }
+
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+if DEVELOPER:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    MEDIAFILES_LOCATION = 'media'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
+# Frontend
+
+SITE_NAME = 'GiroX | Seu evento esportivo'
+SITE_SHORT_NAME = 'GiroX'
+
+# Canonical SEO
+SITE_CANONICAL = 'http://www.girox.com.br/'
+
+# Social tags
+SITE_KEYWORDS = 'girox, esporte apucarana, evento esportivo apucarana'
+SITE_DESCRIPTION = 'Esportes em Apucarana e Região.'
+SITE_IMAGE = 'https://s3-sa-east-1.amazonaws.com/girox/girox.png'
+
+# Twitter Card data
+TWITTER_SITE = '@giroxesportes'
+TWITTER_CREATOR = '@sandrofolk'
+
+# Open Graph data
+SITE_FB_APP_ID = ''

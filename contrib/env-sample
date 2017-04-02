@@ -1,6 +1,7 @@
 SECRET_KEY=THIS_IS_NOT_A_GOOD_SECRET
 DEBUG=True
-ALLOWED_HOSTS=127.0.0.1, .localhost, .herokuapp.com
+DEVELOPER=True
+ALLOWED_HOSTS=127.0.0.1, .localhost, .herokuapp.com, .girox.com.br
 
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 EMAIL_HOST=localhost
@@ -8,3 +9,8 @@ EMAIL_PORT=25
 EMAIL_USE_TLS=False
 EMAIL_HOST_USER=
 EMAIL_HOST_PASSWORD=
+
+# S3 AWS
+AWS_STORAGE_BUCKET_NAME=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=

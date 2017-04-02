@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
+from django.conf.urls.static import static
 # from django.views.generic.base import RedirectView
 # from girox.frontend.views import home
 from girox.frontend.views import HomePageView, coming_soon
@@ -34,7 +35,7 @@ urlpatterns = i18n_patterns(
 
     url(r'^i18n/', include('django.conf.urls.i18n')),
     prefix_default_language=False
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

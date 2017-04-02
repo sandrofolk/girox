@@ -31,8 +31,11 @@ class SubscriptionModelTest(TestCase):
         self.subscription = Subscription.objects.create(
             name=self.name,
             rg='1234567890',
+            cpf='12345678901',
             email='email@email.com',
             phone='(012) 3 4567-8900',
+            date_of_birth=timezone.now(),
+            address='Rua teste',
             city='Apucarana-PR',
             event=self.event
         )

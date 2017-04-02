@@ -29,9 +29,10 @@ class SubscriptionNewGet(TestCase):
         """ Html must contain input tags """
         tags = (
             ('<form', 1),
-            ('<input', 9),
+            ('<input', 12),
             ('type="hidden"', 1),
-            ('type="text"', 3),
+            ('type="text"', 5),
+            ('type="number"', 1),
             ('type="email"', 1),
             ('type="checkbox"', 1),
             ('type="submit"', 1)
@@ -59,9 +60,9 @@ class SubscriptionsNewPostValid(TestCase):
             date_limit_subscription=timezone.now()
         )
         self.rg = '12345678901'
-        data = dict(name='Participante 1', rg=self.rg,
-                    email='email@email.com', phone='(012) 3 4567-8900',
-                    city='Apucarana-PR', event=self.event.pk)
+        data = dict(name='Participante 1', rg=self.rg, cpf='12345678901',
+                    email='email@email.com', phone='(012) 3 4567-8900', date_of_birth=timezone.now().date(),
+                    address='Rua teste', city='Apucarana-PR', event=self.event.pk)
         self.resp = self.client.post(r('events:subscription_new', self.event.pk), data)
 
     def test_post(self):

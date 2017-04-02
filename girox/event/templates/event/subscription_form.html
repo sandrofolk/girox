@@ -1,10 +1,10 @@
 {% extends "frontend/base.html" %}
-{% load static %}
+{% load static from staticfiles %}
 
 {% block content %}
     <div class="section landing-section">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <h2 class="text-center title">Formulário de inscrição</h2>
                 <form class="contact-form" action="." method="post">
                     {% csrf_token %}
@@ -17,7 +17,7 @@
                                 <label class="control-label">{{ form.name.label }}</label>
                                 {{ form.name.errors }}
                                 <input type="text" class="form-control" id="id_name" maxlength="255" name="name" required>
-{#                                {{ form.name }}#}
+                                <small>{{ form.name.help_text }}</small>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -25,27 +25,56 @@
                                 <label class="control-label">{{ form.email.label }}</label>
                                 {{ form.email.errors }}
                                 <input type="email" class="form-control" id="id_email" name="email" required>
+                                <small>{{ form.email.help_text }}</small>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group label-floating">
                                 <label class="control-label">{{ form.rg.label }}</label>
                                 {{ form.rg.errors }}
                                 <input type="text" class="form-control" id="id_rg" maxlength="20" name="rg" required>
+                                <small>{{ form.rg.help_text }}</small>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">{{ form.cpf.label }}</label>
+                                {{ form.cpf.errors }}
+                                <input type="number" class="form-control" id="id_cpf" maxlength="11" name="cpf" required>
+                                <small>{{ form.cpf.help_text }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group label-floating">
                                 <label class="control-label">{{ form.phone.label }}</label>
                                 {{ form.phone.errors }}
                                 <input type="tel" class="form-control" id="id_phone" maxlength="20" name="phone" required>
+                                <small>{{ form.phone.help_text }}</small>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group label-floating">
+                                <label class="control-label">{{ form.address.label }}</label>
+                                {{ form.address.errors }}
+                                <input type="text" class="form-control" id="id_address" maxlength="255" name="address" required>
+                                <small>{{ form.address.help_text }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group label-floating">
                                 <label class="control-label">{{ form.city.label }}</label>
                                 {{ form.city.errors }}
                                 <input type="text" class="form-control" id="id_city" maxlength="255" name="city" required>
+                                <small>{{ form.city.help_text }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-static">
+                                <label class="control-label">{{ form.date_of_birth.label }}</label>
+                                {{ form.date_of_birth.errors }}
+                                <input type="text" class="datepicker form-control" id="id_date_of_birth"
+                                       name="date_of_birth" data-date-format="dd/mm/yyyy" required>
+                                <small>{{ form.date_of_birth.help_text }}</small>
                             </div>
                         </div>
                     </div>

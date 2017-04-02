@@ -1,4 +1,4 @@
-{% load static %}
+{% load static from staticfiles %}
 
 <div class="section landing-section">
     <div class="row">
@@ -12,7 +12,7 @@
                     <div class="col-md-4">
                         <div class="card card-blog card-plain">
                             <div class="card-image">
-                                <img class="img" src="{% static "img/acap.png" %}" />
+                                <img class="img" src="{{ event.image.url|default_if_none:"" }}" />
                             </div>
                         </div>
                     </div>
@@ -30,8 +30,7 @@
                             <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
                                 Inscrição
                             </a><br />
-                            <!-- <strong><a href="#">Reimprimir ficha de inscrição</a></strong> -->
-                            <h5><a href="{% static "pdf/Termo_de_Responsabilidade.pdf" %}" target="_blank" class="text-danger">Re-imprimir <strong>Ficha de Inscrição</strong></a></h5>
+                            <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
                         </div>
                     </div>
                 </div>

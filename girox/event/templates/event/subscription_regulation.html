@@ -1,0 +1,43 @@
+{% extends "frontend/base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2 class="title">Reimpressão do Regulamento</h2>
+
+                <form class="navbar-form" action="." method="post">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                        {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-danger">
+                                <div class="container-fluid">
+                                  <div class="alert-icon">
+                                    <i class="material-icons">error_outline</i>
+                                  </div>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                  </button>
+                                  <b>Erro:</b> {{ message }}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ form.non_field_errors }}
+
+                    <div class="form-group label-floating">
+                        <label class="control-label">CPF</label>
+                        <input type="number" class="form-control" id="id_cpf" maxlength="11" minlength="11" name="cpf" required>
+                    </div>
+                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-fab-mini"><i class="material-icons">search</i><div class="ripple-container"></div></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

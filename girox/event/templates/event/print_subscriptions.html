@@ -1,0 +1,43 @@
+{% extends "frontend/base_print.html" %}
+
+{% block content %}
+{% for event in events %}
+    <h1>{{ event.title }} <small>{{ event.date|date:"SHORT_DATE_FORMAT" }}</small></h1>
+    <table class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th rowspan="2" class="text-center">#</th>
+                <th>NOME</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>E-MAIL</th>
+                <th>DATA NASC.</th>
+            </tr>
+            <tr>
+                <th colspan="3">ENDEREÇO</th>
+                <th>CIDADE</th>
+                <th>FONE</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for subscription in event.subscription_set.all %}
+            <tr>
+                <td rowspan="2" class="text-center">{{ subscription.id }}</td>
+                <td>{{ subscription.name }}</td>
+                <td>{{ subscription.rg }}</td>
+                <td>{{ subscription.cpf }}</td>
+                <td>{{ subscription.email }}</td>
+                <td>{{ subscription.date_of_birth|date:"SHORT_DATE_FORMAT" }}</td>
+            </tr>
+            <tr>
+                <td colspan="3">{{ subscription.address }}</td>
+                <td>{{ subscription.city }}</td>
+                <td>{{ subscription.phone }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock content %}
