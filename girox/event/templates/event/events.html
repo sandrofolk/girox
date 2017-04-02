@@ -12,7 +12,9 @@
                     <div class="col-md-4">
                         <div class="card card-blog card-plain">
                             <div class="card-image">
-                                <img class="img" src="{{ event.image.url|default_if_none:"" }}" />
+                                <a href="{{ event.image.url|default_if_none:"#" }}" target="_blank">
+                                    <img class="img" src="{{ event.image.url|default_if_none:"" }}" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -27,9 +29,13 @@
                                 <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
                                 {{ event.description }}
                             </p>
-                            <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
+                            <!-- <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
                                 Inscrição
-                            </a><br />
+                            </a> -->
+                            <a href="#" class="btn btn-danger btn-raised">
+                                Inscrições em Breve
+                            </a>
+                            <br />
                             <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
                         </div>
                     </div>

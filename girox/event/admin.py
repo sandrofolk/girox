@@ -26,5 +26,10 @@ class EventModelAdmin(admin.ModelAdmin):
     actions = [print_subscriptions]
 
 
+class SubscriptionModelAdmin(admin.ModelAdmin):
+    list_display = ('name', 'rg', 'cpf')
+    search_fields = ('name', 'rg', 'cpf')
+
+
 admin.site.register(Event, EventModelAdmin)
-# admin.site.register(Subscription)
+admin.site.register(Subscription, SubscriptionModelAdmin)
