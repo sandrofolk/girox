@@ -21,7 +21,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 # from django.views.generic.base import RedirectView
 # from girox.frontend.views import home
-from girox.frontend.views import HomePageView, coming_soon
+from girox.frontend.views import HomePageView, contact
 
 
 urlpatterns = i18n_patterns(
@@ -32,6 +32,7 @@ urlpatterns = i18n_patterns(
     # url(r'^$', coming_soon, name='coming_soon'),
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^eventos/', include('girox.event.urls', namespace='events')),
+    url(r'^contato', contact, name='contact'),
 
     url(r'^i18n/', include('django.conf.urls.i18n')),
     prefix_default_language=False

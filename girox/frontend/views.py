@@ -1,4 +1,4 @@
-from django.views.generic.base import TemplateView
+from django.views.generic import TemplateView
 
 from girox.event.models import Event
 
@@ -12,14 +12,14 @@ class HomePageView(TemplateView):
         context['event_list'] = Event.objects.all()[:5]
         return context
 
+contact = TemplateView.as_view(
+    template_name='frontend/contact.html'
+)
 
-# from django.views.generic import TemplateView
-#
-#
 # home = TemplateView.as_view(
 #     template_name='frontend/index.html'
 # )
 
-coming_soon = TemplateView.as_view(
-    template_name='frontend/coming_soon.html'
-)
+# coming_soon = TemplateView.as_view(
+#     template_name='frontend/coming_soon.html'
+# )
