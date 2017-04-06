@@ -9,17 +9,19 @@
             <div class="card card-plain card-blog">
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <div class="card card-blog card-plain">
-                            <div class="card-image">
-                                <a href="{% url 'events:event_detail' event.pk %}">
-                                    <img class="img" src="{{ event.image.url|default_if_none:"" }}" />
-                                </a>
+                    {% if event.image %}
+                        <div class="col-md-4">
+                            <div class="card card-blog card-plain">
+                                <div class="card-image">
+                                    <a href="{% url 'events:event_detail' event.pk %}">
+                                        <img class="img" src="{{ event.image.url }}" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
 
-                    <div class="col-md-8">
+                    <div class="{% if event.image %}col-md-8{% else %}col-md-12{% endif %}">
                         <div class="card card-blog card-plain">
                             <h3 class="card-title">
                                 <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>

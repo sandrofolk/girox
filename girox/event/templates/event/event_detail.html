@@ -4,7 +4,9 @@
 {% block og %}
     <meta property="og:title" content="{{ event.title }}" />
     <meta property="og:url" content="{% url 'events:event_detail' event.pk %}" />
+    {% if event.image %}
     <meta property="og:image" content="{{ event.image.url }}" />
+    {% endif %}
     <meta property="og:description" content="{{ event.description }}" />
     <meta property="og:site_name" content="GiroX" />
 {% endblock og %}
@@ -42,11 +44,14 @@
                 {{ event.description|safe|escape|linebreaks }}
             </div>
 
-            <div class="section col-md-10 col-md-offset-1">
-                <div class="col-md-12">
-                    <img class="img-rounded img-responsive img-raised center-block" alt="{{ event.title }} imagem" src="{{ event.image.url }}">
+            {% if event.image %}
+                <div class="section col-md-10 col-md-offset-1">
+                    <div class="col-md-12">
+                        <img class="img-rounded img-responsive img-raised center-block"
+                             alt="{{ event.title }} imagem" src="{{ event.image.url }}">
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}

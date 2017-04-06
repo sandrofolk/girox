@@ -8,7 +8,7 @@ class Event(models.Model):
     description = models.TextField('descrição')
     date = models.DateTimeField('data do evento')
     date_limit_subscription = models.DateTimeField('data limite de inscrição')
-    image = models.ImageField(upload_to='events/', null=True)
+    image = models.ImageField(upload_to='events/', null=True, blank=True)
 
     class Meta:
         verbose_name = 'evento'
