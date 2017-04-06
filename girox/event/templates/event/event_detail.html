@@ -1,0 +1,52 @@
+{% extends "frontend/base.html" %}
+{% load static from staticfiles %}
+
+{% block og %}
+    <meta property="og:title" content="{{ event.title }}" />
+    <meta property="og:url" content="{% url 'events:event_detail' event.pk %}" />
+    <meta property="og:image" content="{{ event.image.url }}" />
+    <meta property="og:description" content="{{ event.description }}" />
+    <meta property="og:site_name" content="GiroX" />
+{% endblock og %}
+
+{% block content %}
+
+    <div class="section section-text">
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="btn btn-google btn-round pull-right"
+                           rel="tooltip" title="Compartilhe no Google plus" data-placement="bottom">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a href="#" class="btn btn-twitter btn-round pull-right"
+                           rel="tooltip" title="Compartilhe no Twitter" data-placement="bottom">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-facebook btn-round pull-right"
+                           rel="tooltip" title="Compartilhe no Facebook" data-placement="bottom">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="sharethis-inline-share-buttons"></div>
+                <hr />
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 class="title">{{ event.title }}</h3>
+                {{ event.description|safe|escape|linebreaks }}
+            </div>
+
+            <div class="section col-md-10 col-md-offset-1">
+                <div class="col-md-12">
+                    <img class="img-rounded img-responsive img-raised center-block" alt="{{ event.title }} imagem" src="{{ event.image.url }}">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

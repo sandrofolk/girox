@@ -16,6 +16,8 @@ subscription_new = EmailCreateView.as_view(model=Subscription,
 
 subscription_detail = DetailView.as_view(model=Subscription)
 
+event_detail = DetailView.as_view(model=Event)
+
 
 def subscription_regulation(request, event):
     if request.method == 'POST':

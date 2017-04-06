@@ -23,4 +23,8 @@ class SubscriptionDetailGet(TestCase):
             address='Rua teste',
             city='Apucarana-PR'
         )
-        self.resp = self.client.get(r('events:subscription_detail', self.event.subscription_set.first().pk))
+        self.resp = self.client.get(r('events:subscription_detail', self.event.pk, self.event.subscription_set.first().pk))
+
+    def test_get(self):
+        """ GET /eventos/inscricao/1/1/ must return status code 200 """
+        self.assertEqual(200, self.resp.status_code)

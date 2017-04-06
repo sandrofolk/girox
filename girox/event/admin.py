@@ -18,7 +18,7 @@ print_subscriptions.short_description = "Imprimir as inscrições dos eventos se
 
 
 class EventModelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'date', 'date_limit_subscription')
+    list_display = ('title', 'date', 'date_limit_subscription')
     search_fields = ('title', 'description')
     inlines = [
         SubscriptionInline,
