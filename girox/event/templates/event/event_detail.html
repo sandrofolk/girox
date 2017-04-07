@@ -7,7 +7,7 @@
     {% if event.image %}
     <meta property="og:image" content="{{ event.image.url }}" />
     {% endif %}
-    <meta property="og:description" content="{{ event.description }}" />
+    <meta property="og:description" content="{{ event.description|safe|escape|linebreaks }}" />
     <meta property="og:site_name" content="GiroX" />
 {% endblock og %}
 

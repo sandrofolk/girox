@@ -50,3 +50,10 @@ heroku config:set DEBUG=False
 # configuro o email
 git push heroku master --force
 ```
+
+## Util
+
+Comando para desabilitar o collectstatic do heroku  
+```console
+heroku config:set DISABLE_COLLECTSTATIC=1
+```
