@@ -1,11 +1,16 @@
 from django.contrib import admin
 from django.shortcuts import render
 
-from girox.event.models import Event, Subscription
+from girox.event.models import Event, Subscription, EventSponsorsImage
 
 
 class SubscriptionInline(admin.StackedInline):
     model = Subscription
+    extra = 0
+
+
+class EventSponsorsImageInline(admin.TabularInline):
+    model = EventSponsorsImage
     extra = 0
 
 
@@ -21,6 +26,7 @@ class EventModelAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'date_limit_subscription')
     search_fields = ('title', 'description')
     inlines = [
+        EventSponsorsImageInline,
         SubscriptionInline,
     ]
     actions = [print_subscriptions]

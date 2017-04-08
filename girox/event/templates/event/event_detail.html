@@ -12,30 +12,35 @@
 {% endblock og %}
 
 {% block content %}
-
-    <div class="section section-text">
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="sharethis-inline-share-buttons"></div>
-                <hr />
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="sharethis-inline-share-buttons"></div>
+            <hr />
         </div>
 
-        <div class="row">
+        <div class="section-cards col-md-8 col-md-offset-1">
+            <h3 class="title text-center">{{ event.title }}</h3>
+
             {% if event.image %}
-                <div class="section col-md-10 col-md-offset-1">
-                    <h3 class="title text-center">{{ event.title }}</h3>
-                    <div class="col-md-12">
-                        <img class="img-rounded img-responsive img-raised center-block"
-                             alt="{{ event.title }} imagem" src="{{ event.image.url }}">
-                    </div>
-                </div>
+            <div class="col-md-12">
+                <img class="img-rounded img-responsive img-raised center-block"
+                     alt="{{ event.title }} imagem" src="{{ event.image.url }}">
+            </div>
             {% endif %}
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 {{ event.description|safe|escape|linebreaks }}
             </div>
         </div>
+
+        {% if event.sponsors %}
+        <div class="section-cards col-md-2 col-md-offset-1">
+            <h3 class="title">Patrocinadores</h3>
+            {% for sponsor in event.sponsors.all %}
+            <img class="img-rounded img-responsive img-raised center-block"
+                 src="{{ sponsor.image.url }}">
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 {% endblock content %}

@@ -18,6 +18,11 @@ class Event(models.Model):
         return self.title
 
 
+class EventSponsorsImage(models.Model):
+    event = models.ForeignKey(Event, related_name='sponsors')
+    image = models.ImageField(upload_to='events/sponsors/')
+
+
 class Subscription(models.Model):
     name = models.CharField('nome', max_length=255)
     rg = models.CharField('RG', max_length=20)
