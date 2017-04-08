@@ -34,10 +34,10 @@
         </div>
 
         {% if event.sponsors %}
-        <div class="section-cards col-md-2 col-md-offset-1">
+        <div class="section-cards col-md-1 col-md-offset-1">
             <h3 class="title">Patrocinadores</h3>
             {% for sponsor in event.sponsors.all %}
-            <img class="img-rounded img-responsive img-raised center-block"
+            <img class="img-rounded img-responsive center-block"
                  src="{{ sponsor.image.url }}">
             {% endfor %}
         </div>

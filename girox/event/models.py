@@ -8,7 +8,7 @@ class Event(models.Model):
     description = models.TextField('descrição')
     date = models.DateTimeField('data do evento')
     date_limit_subscription = models.DateTimeField('data limite de inscrição')
-    image = models.ImageField(upload_to='events/', null=True, blank=True)
+    image = models.ImageField('imagem', upload_to='events/', null=True, blank=True)
 
     class Meta:
         verbose_name = 'evento'
@@ -20,7 +20,14 @@ class Event(models.Model):
 
 class EventSponsorsImage(models.Model):
     event = models.ForeignKey(Event, related_name='sponsors')
-    image = models.ImageField(upload_to='events/sponsors/')
+    image = models.ImageField('imagem', upload_to='events/sponsors/')
+
+    class Meta:
+        verbose_name = 'patrocinador'
+        verbose_name_plural = 'patrocinadores'
+
+    def __str__(self):
+        return self.image.url
 
 
 class Subscription(models.Model):

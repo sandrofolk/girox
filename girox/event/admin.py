@@ -27,7 +27,7 @@ class EventModelAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     inlines = [
         EventSponsorsImageInline,
-        SubscriptionInline,
+        # SubscriptionInline,
     ]
     actions = [print_subscriptions]
 
