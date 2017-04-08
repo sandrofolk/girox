@@ -39,6 +39,7 @@ class Subscription(models.Model):
     phone = models.CharField('telefone', max_length=20)
     address = models.CharField('endereço', max_length=255)
     city = models.CharField('cidade-UF', max_length=255)
+    team = models.CharField('equipe', null=True, blank=True, max_length=255)
     created_at = models.DateTimeField('criado em', auto_now_add=True)
     event = models.ForeignKey('Event', verbose_name='evento', on_delete=models.CASCADE)
 
