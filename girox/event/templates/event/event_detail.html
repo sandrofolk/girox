@@ -23,19 +23,19 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3 class="title">{{ event.title }}</h3>
-                {{ event.description|safe|escape|linebreaks }}
-            </div>
-
             {% if event.image %}
                 <div class="section col-md-10 col-md-offset-1">
+                    <h3 class="title text-center">{{ event.title }}</h3>
                     <div class="col-md-12">
                         <img class="img-rounded img-responsive img-raised center-block"
                              alt="{{ event.title }} imagem" src="{{ event.image.url }}">
                     </div>
                 </div>
             {% endif %}
+
+            <div class="col-md-8 col-md-offset-2">
+                {{ event.description|safe|escape|linebreaks }}
+            </div>
         </div>
     </div>
 {% endblock content %}
