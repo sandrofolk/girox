@@ -21,24 +21,31 @@
         <div class="section-cards col-md-8 col-md-offset-1">
             <h3 class="title text-center">{{ event.title }}</h3>
 
-            {% if event.image %}
-            <div class="col-md-12">
+            <div class="section col-md-12">
+                {% if event.image %}
                 <img class="img-rounded img-responsive img-raised center-block"
                      alt="{{ event.title }} imagem" src="{{ event.image.url }}">
+                <br />
+                {% endif %}
+                <a href="#" class="btn btn-danger btn-raised">
+                                Inscrições em Breve
+                            </a>
+                {{ event.description|safe|escape|linebreaks }}
             </div>
-            {% endif %}
+
 
             <div class="col-md-12">
-                {{ event.description|safe|escape|linebreaks }}
+
             </div>
         </div>
 
         {% if event.sponsors %}
-        <div class="section-cards col-md-1 col-md-offset-1">
-            <h3 class="title">Patrocinadores</h3>
+        <div class="section-cards col-md-2 col-md-offset-1">
+            <h4 class="title text-center">Patrocinadores</h4>
             {% for sponsor in event.sponsors.all %}
             <img class="img-rounded img-responsive center-block"
                  src="{{ sponsor.image.url }}">
+            <br />
             {% endfor %}
         </div>
         {% endif %}
