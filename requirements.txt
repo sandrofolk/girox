@@ -13,6 +13,6 @@ static3==0.7.0
 Pillow==4.0.0
 django-storages==1.5.2
 boto3==1.4.4
-#boto==2.46.1
+boto==2.46.1
 pytz
 django-photologue==3.6
