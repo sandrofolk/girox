@@ -2,6 +2,7 @@ SECRET_KEY=THIS_IS_NOT_A_GOOD_SECRET
 DEBUG=True
 DEVELOPER=True
 ALLOWED_HOSTS=127.0.0.1, .localhost, .herokuapp.com, .girox.com.br
+DEFAULT_FROM_EMAIL=email@dominio.com.br
 
 EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 EMAIL_HOST=localhost
