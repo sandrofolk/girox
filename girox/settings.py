@@ -79,8 +79,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'storages',
 
-    # 'photologue',
-    # 'sortedm2m',
+    'photologue',
+    'sortedm2m',
 
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
