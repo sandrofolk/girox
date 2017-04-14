@@ -1,0 +1,42 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}Todos os Alguns{% endblock %}
+
+{% block content %}
+
+    <div class="section landing-section">
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+                <h1 class="title">Todos os albuns</h1>
+
+                <br />
+
+                {% if object_list %}
+                    {% for gallery in object_list %}
+                        <div class="row col-lg-12">
+                            <h2><a href="{{ gallery.get_absolute_url }}">{{ gallery.title }}</a></h2>
+                            <p class="muted"><small>Publicado {{ gallery.date_added }}</small></p>
+                            {% if gallery.description %}<p>{{ gallery.description|safe }}</p>{% endif %}
+
+                            {% for photo in gallery.sample %}
+                                <div class="col-md-2">
+                                    <a href="{{ photo.get_absolute_url }}">
+                                         <img src="{{ photo.get_thumbnail_url }}" class="thumbnail img-responsive" alt="{{ photo.title }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row col-lg-12">Nenhum album para mostrar.</div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    {% include "photologue/includes/paginator.html" %}
+
+{% endblock %}

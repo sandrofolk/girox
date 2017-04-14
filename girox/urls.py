@@ -19,13 +19,22 @@ from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from photologue.sitemaps import GallerySitemap, PhotoSitemap
 # from django.views.generic.base import RedirectView
 # from girox.frontend.views import home
 from girox.frontend.views import HomePageView, ContactView, contact_success
 
 
+sitemaps = {
+    'photologue_galleries': GallerySitemap,
+    'photologue_photos': PhotoSitemap,
+}
+
 urlpatterns = i18n_patterns(
     url(_(r'^admin/'), admin.site.urls),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
 
     # url(r'^$', RedirectView.as_view(url='/admin')),
     # url(r'^$', home, name='home'),
@@ -34,6 +43,8 @@ urlpatterns = i18n_patterns(
     url(r'^eventos/', include('girox.event.urls', namespace='events')),
     url(r'^contato/$', ContactView.as_view(), name='contact'),
     url(r'^contato/sucesso/', contact_success, name='contact_success'),
+
+    url(r'^fotos/', include('photologue.urls', namespace='photologue')),
 
     url(r'^i18n/', include('django.conf.urls.i18n')),
     prefix_default_language=False

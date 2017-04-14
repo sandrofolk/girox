@@ -1,0 +1,31 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}{% blocktrans with show_day=day|date:"d F Y" %}Fotos de {{ show_day }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+
+    <div class="section landing-section">
+        <div class="row">
+
+            <div class="col-md-10 col-md-offset-1">
+                <h1 class="title">{% blocktrans with show_day=day|date:"d F Y" %}Fotos de {{ show_day }}{% endblocktrans %}</h1>
+
+                <br />
+
+                <div class="col-md-12">
+
+                    {% if object_list %}
+                        {% for gallery in object_list %}
+                            {% include "photologue/includes/gallery_sample.html" %}
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhuma foto para mostrar.</p>
+                    {% endif %}
+
+                    <div class="col-md-12"><a href="{% url 'photologue:gallery-archive-month' day.year day|date:"m"|lower %}" class="btn btn-default">Ver todas as fotos por mês</a></div>
+
+                </div>
+            </div>
+
+{% endblock %}

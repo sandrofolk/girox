@@ -43,6 +43,8 @@ ADMINS = [('Alessandro', 'alessandrolimafolk@gmail.com'),]
 
 AUTH_USER_MODEL = 'authentication.MyUser'
 
+SITE_ID = 1
+
 
 # Email configuration
 
@@ -70,10 +72,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'test_without_migrations',
     'django_extensions',
     'debug_toolbar',
     'storages',
+
+    'photologue',
+    'sortedm2m',
 
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
@@ -100,7 +107,7 @@ ROOT_URLCONF = 'girox.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

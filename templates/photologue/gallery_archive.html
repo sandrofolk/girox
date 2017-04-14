@@ -1,0 +1,39 @@
+{% extends "photologue/root.html" %}
+{% load i18n %}
+
+{% block title %}Fotos{% endblock %}
+
+{% block content %}
+
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h1 class="title">Últimas fotos</h1>
+
+                <br />
+
+                <aside class="col-md-2">
+                    <h3>Filtrar por ano</h3>
+                    <ul>
+                    {% for date in date_list %}
+                        <li><a href="{% url 'photologue:pl-gallery-archive-year' date.year %}">{{ date|date:"Y" }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </aside>
+
+                <main class="col-md-10">
+
+                    {% if latest %}
+                        {% for gallery in latest %}
+                            {% include "photologue/includes/gallery_sample.html" %}
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhuma foto para mostrar.</p>
+                    {% endif %}
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

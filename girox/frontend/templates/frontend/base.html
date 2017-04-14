@@ -11,7 +11,7 @@
 
     <meta name="google-site-verification" content="HcL9pGRbAXmza6NtmKAiGYX-x5XSFuP4jhYtFKqFM1w" />
 
-	<title>GiroX</title>
+	<title>GiroX | {% block title %}Seu evento esportivo{% endblock %}</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -79,7 +79,12 @@
 
 	    <div class="collapse navbar-collapse" id="navigation-index">
 	    	<ul class="nav navbar-nav navbar-right">
-				<li>
+				<!-- <li>
+                    <a href="{% url 'photologue:pl-photologue-root' %}">
+                        Fotos
+                    </a>
+                </li> -->
+                <li>
                     <a href="{% url 'events:event_list' %}">
                         Eventos
                     </a>
