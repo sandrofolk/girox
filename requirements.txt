@@ -17,3 +17,5 @@ boto==2.46.1
 botocore==1.5.39
 pytz
 django-photologue==3.6
+django-taggit==0.22.0
+django-braces==1.11.0

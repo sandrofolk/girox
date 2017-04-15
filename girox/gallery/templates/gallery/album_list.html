@@ -1,0 +1,56 @@
+{% extends "frontend/base.html" %}
+{% load static from staticfiles %}
+
+{% block title %}Galeria de Fotos{% endblock %}
+
+{% block content %}
+
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h1 class="title">Galeria de Fotos</h1>
+
+                {% if album_list %}
+                    {% for album in album_list %}
+
+                        <div class="row col-lg-12">
+                            <h2><a href="{{ album.get_absolute_url }}">{{ album.title }}</a></h2>
+                            <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
+                            {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
+
+                            {% for photo in album.photo_set.all %}
+                                <div class="col-md-2">
+                                    <a href="{{ photo.get_absolute_url }}">
+                                         <img src="{{ photo.get_absolute_url }}" class="img-responsive" alt="{{ photo.title }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Upload Photos -->
+                        {% if user.is_staff %}
+                            <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
+                                {% csrf_token %}
+                            </form>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="row col-lg-12">Nenhuma foto para mostrar.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block endcss %}
+    {% if user.is_staff %}
+        <link rel="stylesheet" href="{% static "assets/css/dropzone.min.css" %}">
+    {% endif %}
+{% endblock endcss %}
+
+{% block endjs %}
+    {% if user.is_staff %}
+        <script src="{% static "assets/js/dropzone.min.js" %}" type="text/javascript"></script>
+    {% endif %}
+{% endblock endjs %}

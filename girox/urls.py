@@ -40,6 +40,7 @@ urlpatterns = i18n_patterns(
     # url(r'^$', home, name='home'),
     # url(r'^$', coming_soon, name='coming_soon'),
     url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^galeria/', include('girox.gallery.urls', namespace='galleries')),
     url(r'^eventos/', include('girox.event.urls', namespace='events')),
     url(r'^contato/$', ContactView.as_view(), name='contact'),
     url(r'^contato/sucesso/', contact_success, name='contact_success'),

@@ -82,9 +82,12 @@ INSTALLED_APPS = [
     # 'photologue',
     # 'sortedm2m',
 
+    'taggit',
+
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
     'girox.event.apps.EventConfig',
+    'girox.gallery.apps.GalleryConfig',
 
     'girox.frontend',
 ]
@@ -223,3 +226,8 @@ TWITTER_CREATOR = '@sandrofolk'
 
 # Open Graph data
 SITE_FB_APP_ID = ''
+
+
+# https://django-taggit.readthedocs.io/en/latest/index.html
+
+TAGGIT_CASE_INSENSITIVE = True
