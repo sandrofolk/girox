@@ -27,9 +27,16 @@
                      alt="{{ event.title }} imagem" src="{{ event.image.url }}">
                 <br />
                 {% endif %}
-                <a href="#" class="btn btn-danger btn-raised">
+
+
+                <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">Inscrição</a>
+                <br />
+                <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
+
+
+                <!-- <a href="#" class="btn btn-danger btn-raised">
                                 Inscrições em Breve
-                            </a>
+                            </a> -->
                 {{ event.description|safe|escape|linebreaks }}
             </div>
 

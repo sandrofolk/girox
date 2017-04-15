@@ -60,7 +60,7 @@
                                 <small>{{ form.address.help_text }}</small>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <div class="form-group label-floating">
                                 <label class="control-label">{{ form.city.label }}</label>
                                 {{ form.city.errors }}
@@ -75,6 +75,14 @@
                                 <input type="text" class="datepicker form-control" id="id_date_of_birth"
                                        name="date_of_birth" data-date-format="dd/mm/yyyy" required>
                                 <small>{{ form.date_of_birth.help_text }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group label-floating">
+                                <label class="control-label">{{ form.team.label }}</label>
+                                {{ form.team.errors }}
+                                <input type="text" class="form-control" id="id_team" maxlength="255" name="team">
+                                <small>{{ form.team.help_text }}</small>
                             </div>
                         </div>
                     </div>

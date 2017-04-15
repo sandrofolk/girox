@@ -6,7 +6,7 @@ from girox.event.models import Subscription
 class SubscriptionForm(forms.ModelForm):
     class Meta:
         model = Subscription
-        fields = ['name', 'rg', 'cpf', 'email', 'phone', 'date_of_birth', 'address', 'city', 'event']
+        fields = ['name', 'rg', 'cpf', 'email', 'phone', 'date_of_birth', 'address', 'city', 'team', 'event']
 
     def clean_name(self):
         name = self.cleaned_data['name']
