@@ -18,13 +18,19 @@
                             <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
                             {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
 
+                            <div class="row">
                             {% for photo in album.photo_set.all %}
-                                <div class="col-md-2">
+                                <div class="col-md-2" style="height: 100%;">
                                     <a href="{{ photo.get_absolute_url }}">
                                          <img src="{{ photo.get_absolute_url }}" class="img-responsive" alt="{{ photo.title }}">
                                     </a>
                                 </div>
+                                {% if forloop.counter|divisibleby:6 %}
+                                </div>
+                                <div class="row">
+                                {% endif %}
                             {% endfor %}
+                            </div>
                         </div>
 
                         <!-- Upload Photos -->
