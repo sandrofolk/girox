@@ -39,7 +39,11 @@ class SubscriptionModelAdmin(admin.ModelAdmin):
 
 
 class SubscriptionProxyAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+    search_fields = ('id', 'name', 'rg', 'cpf', 'email', 'phone', 'address', 'city', 'team')
     change_form_template = "admin/view.html"
+    view_on_site = False
     list_filter = (
         ('event', admin.RelatedOnlyFieldListFilter),
     )
