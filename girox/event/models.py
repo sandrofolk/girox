@@ -61,5 +61,5 @@ class Subscription(models.Model):
 class SubscriptionProxy(Subscription):
     class Meta:
         proxy = True
-        verbose_name = 'inscrição'
-        verbose_name_plural = 'inscrições'
+        verbose_name = 'participante'
+        verbose_name_plural = 'participantes'
