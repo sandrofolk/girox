@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
+from django.conf import settings
 from girox.event.validators import validate_cpf
 
 
@@ -9,6 +10,7 @@ class Event(models.Model):
     date = models.DateTimeField('data do evento')
     date_limit_subscription = models.DateTimeField('data limite de inscrição')
     image = models.ImageField('imagem', upload_to='events/', null=True, blank=True)
+    organizers = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name='organizadores')
 
     class Meta:
         verbose_name = 'evento'
@@ -54,3 +56,10 @@ class Subscription(models.Model):
 
     def get_absolute_url(self):
         return r('events:subscription_detail', self.event.pk, self.pk)
+
+
+class SubscriptionProxy(Subscription):
+    class Meta:
+        proxy = True
+        verbose_name = 'inscrição'
+        verbose_name_plural = 'inscrições'

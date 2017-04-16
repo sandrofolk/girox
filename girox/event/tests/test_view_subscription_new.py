@@ -29,9 +29,9 @@ class SubscriptionNewGet(TestCase):
         """ Html must contain input tags """
         tags = (
             ('<form', 1),
-            ('<input', 12),
+            ('<input', 13),
             ('type="hidden"', 1),
-            ('type="text"', 5),
+            ('type="text"', 6),
             ('type="number"', 1),
             ('type="email"', 1),
             ('type="checkbox"', 1),
