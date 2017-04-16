@@ -36,3 +36,6 @@ admin.site.register(MyUser, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 # admin.site.unregister(Group)
+
+from django.contrib.auth.models import Permission
+admin.site.register(Permission)
