@@ -50,7 +50,7 @@
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=58e574e2e8a8fc0011f81f9c&product=sop' async='async'></script>
 </head>
 
-<body class="contact-page">
+<body class="{% block body_class %}contact-page{% endblock body_class %}">
 
 <!-- Navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top ">
@@ -132,43 +132,23 @@
 <!-- End Navbar -->
 
 <div class="wrapper">
+    {% block page-header %}
     <div class="page-header header-filter big-map"
          data-parallax="active"
          style="background-image: url('{% static "mk_v1.1.1/assets/img/gx capa.png"%}');">
     </div>
+    {% endblock page-header %}
 
-	<!-- <div class="header header-filter" style="background-image: url('{% static "mk_v1.1.1/assets/img/gx.png"%}');"> -->
-	<!-- <div class="header header-filter" style="background-image: url('{% static "mk_v1.1.1/assets/img/gx.png"%}');">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="brand">
-						<h1>GiroX Esportes</h1>
-						<h3>Tudo sobre seu esporte favorito.</h3>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
+    {% block main %}
 	<!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
 	<div class="main main-raised">
 		<div class="container-fluid">
-
-            <!-- <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                   <div class="profile">
-                        <div class="avatar">
-                            <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" class="img-responsive">
-                        </div>
-                   </div>
-                </div>
-            </div> -->
-
 			{% block content %}
             {% endblock content %}
 			
 		</div>
 	</div>
+    {% endblock main %}
 
     <footer class="footer">
         <div class="container">

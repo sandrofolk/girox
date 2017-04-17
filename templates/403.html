@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}403. Proibido{% endblock %}
+
+{% block body_class %}product-page{% endblock body_class %}
+
+{% block page-header %}
+    <div class="page-header header-filter"
+         data-parallax="true"
+         filter-color="red"
+         style="background-image: url('{% static "mk_v1.1.1/assets/img/gx capa.png"%}'); ">
+	</div>
+{% endblock page-header %}
+
+{% block main %}
+    <div class="">
+	    <div class="container">
+            <div class="main main-raised ">
+                <div class="row" style="height: 100%;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1>403</h1>
+                        <h2 class="title">Proibido</h2>
+                        <p class="description">Você não tem permissão para acessar este endereço.</p>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

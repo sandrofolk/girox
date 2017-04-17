@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}400. Requisição imprópria{% endblock %}
+
+{% block body_class %}product-page{% endblock body_class %}
+
+{% block page-header %}
+    <div class="page-header header-filter"
+         data-parallax="true"
+         filter-color="red"
+         style="background-image: url('{% static "mk_v1.1.1/assets/img/gx capa.png"%}'); ">
+	</div>
+{% endblock page-header %}
+
+{% block main %}
+    <div class="">
+	    <div class="container">
+            <div class="main main-raised ">
+                <div class="row" style="height: 100%;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1>400</h1>
+                        <h2 class="title">Requisição imprópria</h2>
+                        <p class="description">A requisição enviada não pode ser atendida.</p>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

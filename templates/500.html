@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}500. Erro interno inesperado{% endblock %}
+
+{% block body_class %}product-page{% endblock body_class %}
+
+{% block page-header %}
+    <div class="page-header header-filter"
+         data-parallax="true"
+         filter-color="red"
+         style="background-image: url('{% static "mk_v1.1.1/assets/img/gx capa.png"%}'); ">
+	</div>
+{% endblock page-header %}
+
+{% block main %}
+    <div class="">
+	    <div class="container">
+            <div class="main main-raised ">
+                <div class="row" style="height: 100%;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1>500</h1>
+                        <h2 class="title">Erro interno inesperado</h2>
+                        <p class="description">Desculpe. Ocorreu um erro inesperado.<br />
+                            Nossa equipe já foi notificada do problema.</p>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
