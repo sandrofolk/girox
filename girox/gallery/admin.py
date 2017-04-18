@@ -23,4 +23,12 @@ class AlbumModelAdmin(admin.ModelAdmin):
     #     }),
     # )
 
+
+class PhotoModelAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'is_public', 'album')
+    # list_display_links = ('file',)
+    list_filter = ('album', 'tags',)
+
+
 admin.site.register(Album, AlbumModelAdmin)
+admin.site.register(Photo, PhotoModelAdmin)

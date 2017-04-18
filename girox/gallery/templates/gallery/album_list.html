@@ -14,7 +14,7 @@
                     {% for album in album_list %}
 
                         <div class="row col-lg-12">
-                            <h2><a href="{{ album.get_absolute_url }}">{{ album.title }}</a></h2>
+                            <h2><a class="text-gray" href="{{ album.get_absolute_url }}">{{ album.title }}</a></h2>
                             <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
                             {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
 
