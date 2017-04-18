@@ -12,7 +12,7 @@ class PhotoInline(admin.TabularInline):
 class AlbumModelAdmin(admin.ModelAdmin):
     list_display = ('title',)
     list_filter = ('tags',)
-    inlines = [PhotoInline,]
+    # inlines = [PhotoInline,]
     # fieldsets = (
     #     (None, {
     #         'fields': ('title', 'description',)
