@@ -5,6 +5,7 @@ from braces.views import (
     AjaxResponseMixin,
     JSONResponseMixin,
     LoginRequiredMixin,
+    # SuperuserRequiredMixin,
     StaffuserRequiredMixin,
 )
 
@@ -25,6 +26,7 @@ class AjaxPhotoUploadView(LoginRequiredMixin,
     View for uploading photos via AJAX.
     """
     def post_ajax(self, request, *args, **kwargs):
+        print('aeeeeee')
         try:
             album = Album.objects.get(pk=kwargs.get('pk'))
         except Album.DoesNotExist:
