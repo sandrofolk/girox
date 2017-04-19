@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, DetailView
 
 from braces.views import (
     AjaxResponseMixin,
@@ -12,6 +12,8 @@ from girox.gallery.models import Album, Photo
 
 
 album_list = ListView.as_view(model=Album)
+
+album_detail = DetailView.as_view(model=Album)
 
 
 class AjaxPhotoUploadView(LoginRequiredMixin,

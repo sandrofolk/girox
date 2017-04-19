@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import resolve_url as r
 from django_extensions.db.models import TimeStampedModel
 from taggit.managers import TaggableManager
 
@@ -15,6 +16,9 @@ class Album(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return r('galleries:album_detail', self.pk)
 
 
 class Photo(TimeStampedModel):
