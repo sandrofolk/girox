@@ -21,9 +21,14 @@ class Album(TimeStampedModel):
         return r('galleries:album_detail', self.pk)
 
 
+def album_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/album_photos/<id of album>/<filename>
+    return 'album_photos/{0}/{1}'.format(instance.album.id, filename)
+
+
 class Photo(TimeStampedModel):
     album = models.ForeignKey(Album)
-    file = models.ImageField('arquivo', upload_to='album_photos/')
+    file = models.ImageField('arquivo', upload_to=album_directory_path)
     description = models.TextField('descrição', blank=True, null=True)
     is_public = models.BooleanField('é pública?', default=True)
     tags = TaggableManager(blank=True, help_text=None)
