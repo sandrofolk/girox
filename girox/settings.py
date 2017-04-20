@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     # 'sortedm2m',
 
     'taggit',
+    'django_cleanup',
 
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
