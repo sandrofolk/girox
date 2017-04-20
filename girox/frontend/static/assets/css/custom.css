@@ -1,7 +1,7 @@
-.page-header {
-    //background-position: center bottom !important;
-}
-
 .logo-container>.logo>img {
     max-height: 50px;
+}
+
+.modal .modal-dialog.modal-photo {
+    width: 90%;
 }

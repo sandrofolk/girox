@@ -42,3 +42,4 @@ class Photo(TimeStampedModel):
     class Meta:
         verbose_name = 'foto'
         verbose_name_plural = 'fotos'
+        ordering = ('album', 'file')
