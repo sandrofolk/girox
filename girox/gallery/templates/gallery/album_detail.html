@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- Upload Photos -->
-                {% if user.is_staff %}
+                {% if user.is_staff and perms.gallery.add_photo %}
                     <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
                         {% csrf_token %}
                     </form>
@@ -73,13 +73,13 @@
 {% endblock endbody %}
 
 {% block endcss %}
-    {% if user.is_staff %}
+    {% if user.is_staff and perms.gallery.add_photo %}
         <link rel="stylesheet" href="{% static "assets/css/dropzone.min.css" %}">
     {% endif %}
 {% endblock endcss %}
 
 {% block endjs %}
-    {% if user.is_staff %}
+    {% if user.is_staff and perms.gallery.add_photo %}
         <script src="{% static "assets/js/dropzone.min.js" %}" type="text/javascript"></script>
     {% endif %}
 

@@ -7,6 +7,7 @@ from braces.views import (
     LoginRequiredMixin,
     # SuperuserRequiredMixin,
     StaffuserRequiredMixin,
+    PermissionRequiredMixin,
 )
 
 from girox.gallery.models import Album, Photo
@@ -19,14 +20,16 @@ album_detail = DetailView.as_view(model=Album)
 
 class AjaxPhotoUploadView(LoginRequiredMixin,
                           StaffuserRequiredMixin,
+                          PermissionRequiredMixin,
                           JSONResponseMixin,
                           AjaxResponseMixin,
                           View):
     """
     View for uploading photos via AJAX.
     """
+    permission_required = "gallery.add_photo"
+
     def post_ajax(self, request, *args, **kwargs):
-        print('aeeeeee')
         try:
             album = Album.objects.get(pk=kwargs.get('pk'))
         except Album.DoesNotExist:
