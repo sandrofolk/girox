@@ -14,44 +14,44 @@
 {% block title %}{{ album.title }}{% endblock %}
 
 {% block content %}
-    <!-- <div class="section landing-section"> -->
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="sharethis-inline-share-buttons"></div>
-                <hr />
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="sharethis-inline-share-buttons"></div>
 
-                <div class="row col-lg-12">
-                    <h1 class="title">{{ album.title }}</h1>
-                    <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
-                    {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
+            <hr />
 
-                    <div class="row">
-                    {% for photo in album.photo_set.all %}
-                        <div class="col-md-2" style="height: 100%;">
-                            <a href="#" class="pop">
-                                 <img src="{{ photo.get_absolute_url }}" class="img-responsive" alt="{{ photo.title }}">
-                            </a>
-                            <!-- <a href="{{ photo.get_absolute_url }}">
-                                 <img src="{{ photo.get_absolute_url }}" class="img-responsive" alt="{{ photo.title }}">
-                            </a> -->
-                        </div>
-                        {% if forloop.counter|divisibleby:6 %}
-                        </div>
-                        <div class="row">
-                        {% endif %}
-                    {% endfor %}
+            <div class="row col-lg-12">
+                <h1 class="title">{{ album.title }}</h1>
+                <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
+                {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
+
+                <div class="row">
+                {% for photo in album.photo_set.all %}
+                    <div class="col-md-2" style="height: 100%;">
+                        <a href="#" class="pop">
+                             <img src="{{ photo.get_absolute_url }}"
+                                  class="img-responsive"
+                                  alt="{{ photo.title }}"
+                                  id="photo{{ photo.id }}"
+                             >
+                        </a>
                     </div>
+                    {% if forloop.counter|divisibleby:6 %}
+                    </div>
+                    <div class="row">
+                    {% endif %}
+                {% endfor %}
                 </div>
-
-                <!-- Upload Photos -->
-                {% if user.is_staff and perms.gallery.add_photo %}
-                    <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
-                        {% csrf_token %}
-                    </form>
-                {% endif %}
             </div>
+
+            <!-- Upload Photos -->
+            {% if user.is_staff and perms.gallery.add_photo %}
+                <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
+                    {% csrf_token %}
+                </form>
+            {% endif %}
         </div>
-    <!-- </div> -->
+    </div>
 {% endblock content %}
 
 {% block endbody %}
@@ -64,7 +64,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <img src="" class="imagepreview img-responsive img-thumbnail img-rounded" style="width: 100%;">
+                        <!-- Carousel Card -->
+						<div class="card card-raised card-carousel">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
+
+									<!-- Indicators -->
+									<ol class="carousel-indicators">
+                                        {% for photo in album.photo_set.all %}
+                                        <li data-target="#carousel-example-generic"
+                                            data-slide-to="{{ forloop.counter0 }}"
+                                            class="carousel_li"
+                                            id="li_photo{{ photo.id }}">
+                                        </li>
+                                        {% endfor %}
+									</ol>
+
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner">
+                                        {% for photo in album.photo_set.all %}
+                                            <div class="carousel_item item" id="item_photo{{ photo.id }}">
+                                                <img src="{{ photo.get_absolute_url }}"
+                                                     alt="{{ photo.title }}">
+                                            </div>
+                                        {% endfor %}
+									</div>
+
+									<!-- Controls -->
+									<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+										<i class="material-icons">keyboard_arrow_left</i>
+									</a>
+									<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+										<i class="material-icons">keyboard_arrow_right</i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- End Carousel Card -->
                     </div>
                 </div>
             </div>
@@ -86,7 +122,14 @@
     <script type="text/javascript">
     $(function() {
         $('.pop').on('click', function() {
-            $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+            $('.carousel_li').removeClass('active');
+            $('.carousel_item').removeClass('active');
+
+            var _item = '#item_'+$(this).find('img').attr('id');
+            $(_item).addClass('active');
+            var _li = '#li_'+$(this).find('img').attr('id');
+            $(_li).addClass('active');
+
             $('#photoModal').modal('show');
         });
     });
