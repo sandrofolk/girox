@@ -34,7 +34,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
         if obj.file:
             # return u'<img src="%s" style="height: 3em;" />' % obj.file.url
             # return u'<img src="%s" style="height: 3em;" />' % get_thumbnailer(obj.file)['mini_photo'].url
-            return u'<img src="%s" style="height: 3em;" />' % obj.file.thumbnail['220x220'].url
+            return u'<img src="%s" />' % obj.file.thumbnail['220x220'].url
         else:
             return ''
 
