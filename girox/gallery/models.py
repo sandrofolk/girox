@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import resolve_url as r
 from django_extensions.db.models import TimeStampedModel
 from taggit.managers import TaggableManager
+from versatileimagefield.fields import VersatileImageField
 
 
 class Album(TimeStampedModel):
@@ -28,7 +29,8 @@ def album_directory_path(instance, filename):
 
 class Photo(TimeStampedModel):
     album = models.ForeignKey(Album)
-    file = models.ImageField('arquivo', upload_to=album_directory_path)
+    # file = models.ImageField('arquivo', upload_to=album_directory_path)
+    file = VersatileImageField('arquivo', upload_to=album_directory_path)
     description = models.TextField('descrição', blank=True, null=True)
     is_public = models.BooleanField('é pública?', default=True)
     tags = TaggableManager(blank=True, help_text=None)

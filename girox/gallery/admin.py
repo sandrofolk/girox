@@ -1,5 +1,5 @@
 from django.contrib import admin
-from easy_thumbnails.files import get_thumbnailer
+# from easy_thumbnails.files import get_thumbnailer
 from girox.gallery.models import Album, Photo
 
 
@@ -33,7 +33,8 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def admin_thumbnail(self, obj):
         if obj.file:
             # return u'<img src="%s" style="height: 3em;" />' % obj.file.url
-            return u'<img src="%s" style="height: 3em;" />' % get_thumbnailer(obj.file)['mini_photo'].url
+            # return u'<img src="%s" style="height: 3em;" />' % get_thumbnailer(obj.file)['mini_photo'].url
+            return u'<img src="%s" style="height: 3em;" />' % obj.file.thumbnail['220x220'].url
         else:
             return ''
 

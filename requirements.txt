@@ -20,4 +20,5 @@ django-photologue==3.6
 django-taggit==0.22.0
 django-braces==1.11.0
 django-cleanup==0.4.2
-easy-thumbnails==2.4.1
+#easy-thumbnails==2.4.1
+django-versatileimagefield==1.7.0

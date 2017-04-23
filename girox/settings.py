@@ -83,7 +83,8 @@ THIRD_PARTS_APPS = (
     'storages',
     'taggit',
     'django_cleanup',
-    'easy_thumbnails',
+    # 'easy_thumbnails',
+    'versatileimagefield',  # http://django-versatileimagefield.readthedocs.io/en/latest/index.html
 )
 
 PROJECT_APPS = (
@@ -218,13 +219,13 @@ else:
 
 # Setting easy_thumbnails
 # https://github.com/SmileyChris/easy-thumbnails
-THUMBNAIL_ALIASES = {
-    '': {
-        'mini_photo':  {'size': (220, 220), 'crop': False, 'upscale': True},
-        'modal_photo': {'size': (600, 600), 'crop': False, 'upscale': True},
-        'cover_photo': {'size': (450, 450), 'crop': False, 'upscale': True},
-    }
-}
+# THUMBNAIL_ALIASES = {
+#     '': {
+#         'mini_photo':  {'size': (220, 220), 'crop': False, 'upscale': True},
+#         'modal_photo': {'size': (600, 600), 'crop': False, 'upscale': True},
+#         'cover_photo': {'size': (450, 450), 'crop': False, 'upscale': True},
+#     }
+# }
 
 
 # Frontend
