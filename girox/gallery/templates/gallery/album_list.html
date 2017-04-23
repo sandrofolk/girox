@@ -1,5 +1,6 @@
 {% extends "frontend/base.html" %}
 {% load static from staticfiles %}
+{% load thumbnail %}
 
 {% block title %}Galeria de Fotos{% endblock %}
 
@@ -16,11 +17,12 @@
                 <div class="row">
                     {% if album_list %}
                         {% for album in album_list %}
+                            {% if album.is_public or perms.gallery.add_photo %}
                             <div class="col-md-6">
                                 <div class="card card-blog section-light-gray">
                                     <div class="card-image">
                                         <a href="{{ album.get_absolute_url }}">
-                                            <img class="img" src="{{ album.cover_photo.get_absolute_url }}" />
+                                            <img class="img" src="{{ album.cover_photo.file|thumbnail_url:'cover_photo' }}" />
                                         </a>
                                     </div>
 
@@ -33,6 +35,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 </div>

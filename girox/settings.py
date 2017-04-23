@@ -65,7 +65,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,24 +74,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+)
+
+THIRD_PARTS_APPS = (
     'test_without_migrations',
     'django_extensions',
     'debug_toolbar',
     'storages',
-
-    # 'photologue',
-    # 'sortedm2m',
-
     'taggit',
     'django_cleanup',
+    'easy_thumbnails',
+)
 
+PROJECT_APPS = (
     'girox.authentication.apps.AuthenticationConfig',
     'girox.core.apps.CoreConfig',
     'girox.event.apps.EventConfig',
     'girox.gallery.apps.GalleryConfig',
 
     'girox.frontend',
-]
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTS_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -188,6 +192,10 @@ USE_THOUSAND_SEPARATOR = True
 #     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
 #     'Cache-Control': 'max-age=94608000',
 # }
+#
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
 
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
@@ -208,8 +216,18 @@ else:
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 
-# Frontend
+# Setting easy_thumbnails
+# https://github.com/SmileyChris/easy-thumbnails
+THUMBNAIL_ALIASES = {
+    '': {
+        'mini_photo':  {'size': (220, 220), 'crop': False, 'upscale': True},
+        'modal_photo': {'size': (600, 600), 'crop': False, 'upscale': True},
+        'cover_photo': {'size': (450, 450), 'crop': False, 'upscale': True},
+    }
+}
 
+
+# Frontend
 SITE_NAME = 'GiroX | Seu evento esportivo'
 SITE_SHORT_NAME = 'GiroX'
 

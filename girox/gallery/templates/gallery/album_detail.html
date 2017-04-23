@@ -1,5 +1,6 @@
 {% extends "frontend/base.html" %}
 {% load static from staticfiles %}
+{% load thumbnail %}
 
 {% block og %}
     <meta property="og:title" content="{{ album.title }}" />
@@ -28,12 +29,11 @@
                 <div class="row">
                 {% for photo in album.photo_set.all %}
                     <div class="col-md-2" style="height: 100%;">
-                        <a href="#" class="pop">
-                             <img src="{{ photo.get_absolute_url }}"
-                                  class="img-responsive"
-                                  alt="{{ photo.title }}"
-                                  id="photo{{ photo.id }}"
-                             >
+                        <a href="javascript:;" class="pop">
+                            <img src="{{ photo.file|thumbnail_url:'mini_photo' }}"
+                                 class="img-responsive"
+                                 alt="{{ photo.title }}"
+                                 id="photo{{ photo.id }}">
                         </a>
                     </div>
                     {% if forloop.counter|divisibleby:6 %}
@@ -60,41 +60,28 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                    <!-- <h2 class="modal-title card-title text-center" id="myModalLabel">Register</h2> -->
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <!-- Carousel Card -->
 						<div class="card card-raised card-carousel">
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<div id="carousel-photos" class="carousel slide" data-ride="carousel">
 								<div class="carousel slide" data-ride="carousel">
-
-									<!-- Indicators -->
-									<ol class="carousel-indicators">
-                                        {% for photo in album.photo_set.all %}
-                                        <li data-target="#carousel-example-generic"
-                                            data-slide-to="{{ forloop.counter0 }}"
-                                            class="carousel_li"
-                                            id="li_photo{{ photo.id }}">
-                                        </li>
-                                        {% endfor %}
-									</ol>
-
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner">
                                         {% for photo in album.photo_set.all %}
                                             <div class="carousel_item item" id="item_photo{{ photo.id }}">
-                                                <img src="{{ photo.get_absolute_url }}"
+                                                <img src="{{ photo.file|thumbnail_url:'modal_photo' }}"
                                                      alt="{{ photo.title }}">
                                             </div>
                                         {% endfor %}
 									</div>
 
 									<!-- Controls -->
-									<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+									<a class="left carousel-control" href="#carousel-photos" data-slide="prev">
 										<i class="material-icons">keyboard_arrow_left</i>
 									</a>
-									<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
 										<i class="material-icons">keyboard_arrow_right</i>
 									</a>
 								</div>
@@ -122,13 +109,10 @@
     <script type="text/javascript">
     $(function() {
         $('.pop').on('click', function() {
-            $('.carousel_li').removeClass('active');
             $('.carousel_item').removeClass('active');
 
             var _item = '#item_'+$(this).find('img').attr('id');
             $(_item).addClass('active');
-            var _li = '#li_'+$(this).find('img').attr('id');
-            $(_li).addClass('active');
 
             $('#photoModal').modal('show');
         });
