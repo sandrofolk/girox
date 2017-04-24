@@ -236,6 +236,13 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     'create_images_on_demand': False,
 }
 
+VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+    'gallery': [
+        ('mini_photo', 'thumbnail__220x220'),
+        ('modal_photo', 'thumbnail__600x600'),
+    ],
+}
+
 
 # Frontend
 SITE_NAME = 'GiroX | Seu evento esportivo'

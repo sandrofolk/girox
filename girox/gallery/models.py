@@ -1,8 +1,10 @@
 from django.db import models
+from django.dispatch import receiver
 from django.shortcuts import resolve_url as r
 from django_extensions.db.models import TimeStampedModel
 from taggit.managers import TaggableManager
 from versatileimagefield.fields import VersatileImageField
+from versatileimagefield.image_warmer import VersatileImageFieldWarmer
 
 
 class Album(TimeStampedModel):
@@ -45,3 +47,25 @@ class Photo(TimeStampedModel):
         verbose_name = 'foto'
         verbose_name_plural = 'fotos'
         ordering = ('album', 'file')
+
+
+@receiver(models.signals.post_save, sender=Photo)
+def warm_Photo_file_images(sender, instance, **kwargs):
+    """Ensures Photo image files are created post-save"""
+    photo_img_warmer = VersatileImageFieldWarmer(
+        instance_or_queryset=instance,
+        rendition_key_set='gallery',
+        image_attr='file'
+    )
+    num_created, failed_to_create = photo_img_warmer.warm()
+
+
+@receiver(models.signals.post_delete, sender=Photo)
+def delete_Photo_files(sender, instance, **kwargs):
+    """
+    Deletes Photo file renditions on post_delete.
+    """
+    # Deletes Image Renditions
+    instance.file.delete_all_created_images()
+    # Deletes Original Image
+    instance.file.delete(save=False)

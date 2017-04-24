@@ -28,11 +28,10 @@
 
                 <div class="row">
                 {% for photo in album.photo_set.all %}
-                    <div class="col-md-2" style="height: 100%;">
-                        <!-- href="javascript:;"  -->
-                        <a class="pop">
+                    <div class="col-md-2">
+                        <a href="javascript:;" class="pop">
                             <img src="{{ photo.file.thumbnail.220x220 }}"
-                                 class="img-responsive"
+                                 class="img-responsive img-thumbnail center-block"
                                  alt="{{ photo.title }}"
                                  id="photo{{ photo.id }}">
                         </a>
@@ -56,7 +55,6 @@
 {% endblock content %}
 
 {% block endbody %}
-    {% comment %}
     <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-photo">
             <div class="modal-content">
@@ -95,7 +93,6 @@
             </div>
         </div>
     </div>
-    {% endcomment %}
 {% endblock endbody %}
 
 {% block endcss %}
@@ -110,7 +107,7 @@
     {% endif %}
 
     <script type="text/javascript">
-    /*$(function() {
+    $(function() {
         $('.pop').on('click', function() {
             $('.carousel_item').removeClass('active');
 
@@ -119,6 +116,6 @@
 
             $('#photoModal').modal('show');
         });
-    });*/
+    });
     </script>
 {% endblock endjs %}
