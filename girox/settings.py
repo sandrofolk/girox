@@ -228,6 +228,15 @@ else:
 # }
 
 
+# Settings for versatileimagefield
+VERSATILEIMAGEFIELD_SETTINGS = {
+    # Whether or not to create new images on-the-fly. Set this to `False` for
+    # speedy performance but don't forget to 'pre-warm' to ensure they're
+    # created and available at the appropriate URL.
+    'create_images_on_demand': False,
+}
+
+
 # Frontend
 SITE_NAME = 'GiroX | Seu evento esportivo'
 SITE_SHORT_NAME = 'GiroX'
