@@ -23,6 +23,9 @@ class Album(TimeStampedModel):
     def get_absolute_url(self):
         return r('galleries:album_detail', self.pk)
 
+    class Meta:
+        ordering = ('-date_added', '-order')
+
 
 def album_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/album_photos/<id of album>/<filename>
