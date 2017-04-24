@@ -33,7 +33,7 @@
                             <img src="{{ photo.file.thumbnail.220x220 }}"
                                  class="img-responsive img-thumbnail center-block"
                                  alt="{{ photo.title }}"
-                                 id="photo{{ photo.id }}">
+                                 id="photo{{ photo.id|stringformat:"i" }}">
                         </a>
                     </div>
                     {% if forloop.counter|divisibleby:6 %}
@@ -70,7 +70,7 @@
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner">
                                         {% for photo in album.photo_set.all %}
-                                            <div class="carousel_item item" id="item_photo{{ photo.id }}">
+                                            <div class="carousel_item item" id="item_photo{{ photo.id|stringformat:"i" }}">
                                                 <img src="{{ photo.file.thumbnail.600x600 }}"
                                                      alt="{{ photo.title }}">
                                             </div>
