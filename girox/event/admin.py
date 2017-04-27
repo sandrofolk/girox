@@ -34,7 +34,7 @@ class EventModelAdmin(admin.ModelAdmin):
 
 
 class SubscriptionModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'rg', 'cpf')
+    list_display = ('id', 'name', 'rg', 'cpf')
     search_fields = ('name', 'rg', 'cpf')
 
 

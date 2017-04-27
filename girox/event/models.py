@@ -7,6 +7,7 @@ from girox.event.validators import validate_cpf
 class Event(models.Model):
     title = models.CharField('título', max_length=255)
     description = models.TextField('descrição')
+    resume = models.TextField('resumo', blank=True, null=True)
     date = models.DateTimeField('data do evento')
     date_limit_subscription = models.DateTimeField('data limite de inscrição')
     image = models.ImageField('imagem', upload_to='events/', null=True, blank=True)
