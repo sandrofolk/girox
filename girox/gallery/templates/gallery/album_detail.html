@@ -12,6 +12,16 @@
     <meta property="og:site_name" content="GiroX" />
 {% endblock og %}
 
+{% block twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@giroxesportes">
+    <meta name="twitter:title" content="{{ album.title }}">
+    <meta name="twitter:description" content="{{ album.description|safe|escape }}">
+    <meta name="twitter:creator" content="@giroxesportes">
+    <meta name="twitter:image" content="{{ album.cover_photo.get_absolute_url }}">
+    <meta name="twitter:domain" content="www.girox.com.br">
+{% endblock twitter %}
+
 {% block title %}{{ album.title }}{% endblock %}
 
 {% block content %}
