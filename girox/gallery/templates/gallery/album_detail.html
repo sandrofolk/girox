@@ -66,13 +66,28 @@
                         <!-- Carousel Card -->
 						<div class="card card-raised card-carousel">
 							<div id="carousel-photos" class="carousel slide" data-ride="carousel">
-								<div class="carousel slide" data-ride="carousel">
+								<!-- <div class="carousel slide" data-ride="carousel"> -->
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner">
                                         {% for photo in album.photo_set.all %}
-                                            <div class="carousel_item item" id="item_photo{{ photo.id|stringformat:"i" }}">
+                                            <div class="carousel_item item {% if forloop.first %}active{% endif %}" id="item_photo{{ photo.id|stringformat:"i" }}">
                                                 <img src="{{ photo.file.thumbnail.600x600 }}"
                                                      alt="{{ photo.title }}">
+
+                                                <a href="http://twitter.com/share?url={% url 'galleries:photo_detail' album.id photo.id %}"
+                                                   class="btn btn-twitter btn-round pull-right">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+
+                                                <a href="http://www.facebook.com/sharer.php?u={% url 'galleries:photo_detail' album.id photo.id %}"
+                                                   class="btn btn-facebook btn-round pull-right">
+                                                    <i class="fa fa-facebook-square"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+
+                                                <span class="btn btn-simple pull-right">
+                                                    <strong>Compartilhar:</strong>
+                                                </span>
                                             </div>
                                         {% endfor %}
 									</div>
@@ -84,7 +99,7 @@
 									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
 										<i class="material-icons">keyboard_arrow_right</i>
 									</a>
-								</div>
+								<!-- </div> -->
 							</div>
 						</div>
 						<!-- End Carousel Card -->
@@ -107,6 +122,10 @@
     {% endif %}
 
     <script type="text/javascript">
+    $(document).ready(function() {
+        $('.carousel').carousel('pause');
+    });
+
     $(function() {
         $('.pop').on('click', function() {
             $('.carousel_item').removeClass('active');

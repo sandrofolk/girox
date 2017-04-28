@@ -17,6 +17,8 @@ album_list = ListView.as_view(model=Album)
 
 album_detail = DetailView.as_view(model=Album)
 
+photo_detail = DetailView.as_view(model=Photo)
+
 
 class AjaxPhotoUploadView(LoginRequiredMixin,
                           StaffuserRequiredMixin,

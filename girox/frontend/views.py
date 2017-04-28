@@ -4,6 +4,7 @@ from django.contrib import messages
 
 from girox.event.models import Event
 from girox.frontend.forms import ContactForm
+from girox.gallery.models import Album
 
 
 class HomePageView(TemplateView):
@@ -13,6 +14,7 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['event_list'] = Event.objects.all()[:5]
+        context['album_list'] = Album.objects.all()[:5]
         return context
 
 

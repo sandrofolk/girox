@@ -2,5 +2,125 @@
 {% load static from staticfiles %}
 
 {% block content %}
-    {% include 'event/events.html' %}
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <h2 class="title">Próximos eventos</h2>
+                <br />
+                {% for event in event_list %}
+                <div class="card card-plain card-blog">
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <!-- Carousel Card -->
+						<div class="card card-raised card-carousel">
+							<div id="carousel-photos" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner">
+
+
+
+                                        {% for event in event_list %}
+                                            <div class="item {% if forloop.first %}active{% endif %}">
+                                                {% if event.image %}
+                                                    <a href="{% url 'events:event_detail' event.pk %}">
+                                                        <img src="{{ event.image.url }}"
+                                                             alt="{{ event.title }}">
+                                                    </a>
+                                                {% endif %}
+
+                                                <h4 class="card-title">
+                                                    <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
+                                                </h4>
+
+                                                <h6 class="category text-danger"><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}</h6>
+
+                                            </div>
+
+
+                                            <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
+                                                Inscrição
+                                            </a>
+                                            <a href="{% url 'events:subscription_regulation' event=event.pk %}" class="btn btn-invert btn-raised pull-right"><i class="fa fa-print"></i> Reimprimir <strong>Ficha de Inscrição</strong></a>
+
+
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                    <!-- Controls -->
+									<a class="left carousel-control" href="#carousel-photos" data-slide="prev">
+										<i class="material-icons">keyboard_arrow_left</i>
+									</a>
+									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
+										<i class="material-icons">keyboard_arrow_right</i>
+									</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-5">
+                <h2 class="title">Galeria de Fotos</h2>
+                <br />
+                <div class="card card-plain card-blog">
+                    <div class="row">
+                        <div class="col-md-12">
+                        <!-- Carousel Card -->
+						<div class="card card-raised card-carousel">
+							<div id="carousel-photos" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner">
+                                        {% for album in album_list %}
+                                            <div class="item {% if forloop.first %}active{% endif %}">
+                                                <img src="{{ album.cover_photo.file.thumbnail.600x600 }}"
+                                                     alt="{{ album.cover_photo.title }}">
+
+                                                <h4 class="card-title">
+                                                    <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
+                                                </h4>
+
+                                                <a href="http://twitter.com/share?url={% url 'galleries:photo_detail' album.id album.cover_photo.id %}"
+                                                   class="btn btn-just-icon btn-twitter btn-round pull-right">
+                                                    <i class="fa fa-twitter"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+
+                                                <a href="http://www.facebook.com/sharer.php?u={% url 'galleries:photo_detail' album.id album.cover_photo.id %}"
+                                                   class="btn btn-just-icon btn-facebook btn-round pull-right">
+                                                    <i class="fa fa-facebook-square"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+									</div>
+
+									<!-- Controls -->
+									<a class="left carousel-control" href="#carousel-photos" data-slide="prev">
+										<i class="material-icons">keyboard_arrow_left</i>
+									</a>
+									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
+										<i class="material-icons">keyboard_arrow_right</i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- End Carousel Card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
