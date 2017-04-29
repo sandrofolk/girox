@@ -91,7 +91,7 @@
                                                     <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
                                                 </h4>
 
-                                                <a href="http://twitter.com/share?url={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                <a href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-just-icon btn-twitter btn-round pull-right"
                                                    target="_blank">
                                                     <i class="fa fa-twitter"></i>
