@@ -2,10 +2,10 @@
 {% load static from staticfiles %}
 
 {% block og %}
-    <meta property="og:title" content="{{ photo.title }}" />
+    <meta property="og:title" content="{{ photo.album.title }}" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     {% if photo.file %}
-    <meta property="og:image" content="{{ photo.file.get_absolute_url }}" />
+    <meta property="og:image" content="{{ photo.file.url }}" />
     {% endif %}
     <meta property="og:description" content="{{ photo.album.description|safe|escape }}" />
     <meta property="og:site_name" content="GiroX" />
