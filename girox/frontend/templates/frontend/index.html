@@ -91,14 +91,14 @@
                                                     <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
                                                 </h4>
 
-                                                <a href="http://twitter.com/share?url={{ request.get_host }}{% url 'galleries:photo_detail' album.id album.cover_photo.id %}"
+                                                <a href="http://twitter.com/share?url={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-just-icon btn-twitter btn-round pull-right"
                                                    target="_blank">
                                                     <i class="fa fa-twitter"></i>
                                                     <div class="ripple-container"></div>
                                                 </a>
 
-                                                <a href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:photo_detail' album.id album.cover_photo.id %}"
+                                                <a href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-just-icon btn-facebook btn-round pull-right"
                                                    target="_blank">
                                                     <i class="fa fa-facebook-square"></i>
