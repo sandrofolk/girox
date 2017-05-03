@@ -4,14 +4,13 @@
 {% block content %}
     <div class="section landing-section">
         <div class="row">
-            <div class="col-md-5 col-md-offset-1">
+            <div class="col-md-5"> <!-- col-md-offset-1 -->
                 <h2 class="title">Próximos eventos</h2>
                 <br />
                 {% for event in event_list %}
                 <div class="card card-plain card-blog">
                     <div class="row">
                         <div class="col-md-12">
-
 
                             <!-- Carousel Card -->
 						<div class="card card-raised card-carousel">
@@ -91,19 +90,62 @@
                                                     <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
                                                 </h4>
 
-                                                <a href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+
+
+
+                                                <!-- <a href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-just-icon btn-twitter btn-round pull-right"
                                                    target="_blank">
                                                     <i class="fa fa-twitter"></i>
                                                     <div class="ripple-container"></div>
+                                                </a> -->
+                                                <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
+                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                   class="btn btn-twitter btn-round pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-twitter-square"></i> Twitter
+                                                    <div class="ripple-container"></div>
                                                 </a>
 
-                                                <a href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                <!-- <a href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-just-icon btn-facebook btn-round pull-right"
                                                    target="_blank">
                                                     <i class="fa fa-facebook-square"></i>
                                                     <div class="ripple-container"></div>
+                                                </a> -->
+                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
+                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                   class="btn btn-facebook btn-round pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-facebook-square"></i> Facebook
+                                                    <div class="ripple-container"></div>
                                                 </a>
+
+
+
+
+                                                <!-- <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
+                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                   class="btn btn-just-icon btn-twitter btn-simple pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-twitter"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
+                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                   class="btn btn-just-icon btn-facebook btn-simple pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-facebook"></i>
+                                                    <div class="ripple-container"></div>
+                                                </a> -->
+
+                                                <span class="btn btn-simple pull-right">
+                                                    <strong>Compartilhar:</strong>
+                                                <div class="ripple-container"></div></span>
+
+
+
+
                                             </div>
                                         {% endfor %}
 									</div>
@@ -123,6 +165,54 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-2">
+
+                <div class="card">
+                    <div class="card-title card-content content-danger text-center">
+                        <h5>
+                            <i class="fa fa-newspaper-o"></i> Publicidade <br />
+                            (Anuncie aqui)
+                        </h5>
+                    </div>
+
+                    <!-- <div class="card-content">
+                        <a href="{% url 'home' %}">
+                            <div class="img-responsive" style="padding-top: 10px;">
+                                <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" rel="tooltip"
+                                     title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <a href="{% url 'home' %}">
+                            <div class="img-responsive" style="padding-top: 10px;">
+                                <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" rel="tooltip"
+                                     title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <a href="{% url 'home' %}">
+                            <div class="img-responsive" style="padding-top: 10px;">
+                                <img src="{% static "assets/img/anuncie-aqui-banner-300x250.png" %}" alt="Anuncie aqui" rel="tooltip"
+                                     title="<b>Anuncie aqui</b>" data-placement="bottom" data-html="true">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
         </div>
     </div>
 {% endblock content %}

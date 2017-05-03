@@ -107,6 +107,7 @@
                         Contato
                     </a>
                 </li>
+                <!--
                 <li>
 					<a rel="tooltip" title="Curta-nos no Facebook" data-placement="bottom"
                        href="https://www.facebook.com/giroxesportes" target="_blank"
@@ -135,6 +136,7 @@
 						<i class="fa fa-youtube-square"></i>
 					</a>
 				</li>
+                -->
 	    	</ul>
 	    </div>
 	</div>
@@ -150,16 +152,17 @@
     {% endblock page-header %}
 
     {% block main %}
-	<!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
-	<div class="main main-raised">
-		<div class="{% block container %}container-fluid{% endblock container %}">
-			{% block content %}
-            {% endblock content %}
-			
-		</div>
-	</div>
+        <!-- you can use the class main-raised if you want the main area to be as a page with shadows -->
+        <div class="main main-raised">
+            <div class="{% block container %}container-fluid{% endblock container %}">
+                {% block content %}
+                {% endblock content %}
+
+            </div>
+        </div>
     {% endblock main %}
 
+    <!--
     <footer class="footer">
         <div class="container">
             <div class="copyright pull-right">
@@ -167,8 +170,95 @@
             </div>
         </div>
     </footer>
+    -->
 
 </div>
+
+
+
+    <!--     *********    SIMPLE BLACK SOCIAL LINE     *********      --
+    <div class="social-line social-line-big-icons social-line-black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a rel="tooltip" title="Curta-nos no Facebook" data-placement="top"
+                       href="https://www.facebook.com/giroxesportes" target="_blank"
+                       class="btn btn-simple btn-just-icon btn-white">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a rel="tooltip" title="Siga-nos no Instagram" data-placement="top"
+                       href="https://www.instagram.com/giroxesportes" target="_blank"
+                       class="btn btn-simple btn-just-icon btn-white">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a rel="tooltip" title="Siga-nos no Twitter" data-placement="top"
+                       href="https://twitter.com/giroxesportes" target="_blank"
+                       class="btn btn-simple btn-just-icon btn-white">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a rel="tooltip" title="Inscreva-se no Canal" data-placement="top"
+                       href="https://www.youtube.com/channel/UCV0ZsfSfjMREI7n4qT2oitQ" target="_blank"
+                       class="btn btn-simple btn-just-icon btn-white">
+                        <i class="fa fa-youtube-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    !--     *********   SIMPLE BLACK SOCIAL LINE     *********      -->
+
+    <!--     *********    BLACK SIMPLE FOOTER WITH SOCIAL AND BRAND     *********      -->
+    <footer class="footer ">
+        <div class="container">
+            <div class="row">
+                <div class="copyright pull-left">
+                    &copy; <script>document.write(new Date().getFullYear())</script>, GiroX - Todos os Direitos Reservados
+                </div>
+
+                <ul class="social-buttons pull-right">
+                    <li>
+                        <a rel="tooltip" title="Curta-nos no Facebook" data-placement="top"
+                           href="https://www.facebook.com/giroxesportes" target="_blank"
+                           class="btn btn-simple btn-just-icon btn-facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a rel="tooltip" title="Siga-nos no Instagram" data-placement="top"
+                           href="https://www.instagram.com/giroxesportes/" target="_blank"
+                           class="btn btn-instagram btn-simple btn-just-icon">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a rel="tooltip" title="Siga-nos no Twitter" data-placement="top"
+                           href="https://twitter.com/giroxesportes" target="_blank"
+                           class="btn btn-just-icon btn-simple btn-twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a rel="tooltip" title="Inscreva-se no Canal" data-placement="top"
+                           href="https://www.youtube.com/channel/UCV0ZsfSfjMREI7n4qT2oitQ" target="_blank"
+                           class="btn btn-youtube btn-simple btn-just-icon">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    <!--     *********   END BLACK SIMPLE FOOTER WITH SOCIAL AND BRAND     *********      -->
+
+
+
 
 {% block endbody %}
 {% endblock endbody %}
