@@ -13,55 +13,44 @@
                         <div class="col-md-12">
 
                             <!-- Carousel Card -->
-						<div class="card card-raised card-carousel">
-							<div id="carousel-events" class="carousel slide" data-ride="carousel">
-								<div class="carousel slide" data-ride="carousel">
-									<!-- Wrapper for slides -->
-									<div class="carousel-inner">
+                            <div class="card card-raised card-carousel">
+                                <div id="carousel-events" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel slide" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            {% for event in event_list %}
+                                                <div class="item {% if forloop.first %}active{% endif %}">
+                                                    {% if event.image %}
+                                                        <a href="{% url 'events:event_detail' event.pk %}">
+                                                            <img src="{{ event.image.url }}"
+                                                                 alt="{{ event.title }}">
+                                                        </a>
+                                                    {% endif %}
 
+                                                    <h4 class="card-title">
+                                                        <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
+                                                    </h4>
 
+                                                    <h6 class="category text-danger"><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}</h6>
+                                                </div>
 
-                                        {% for event in event_list %}
-                                            <div class="item {% if forloop.first %}active{% endif %}">
-                                                {% if event.image %}
-                                                    <a href="{% url 'events:event_detail' event.pk %}">
-                                                        <img src="{{ event.image.url }}"
-                                                             alt="{{ event.title }}">
-                                                    </a>
-                                                {% endif %}
-
-                                                <h4 class="card-title">
-                                                    <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
-                                                </h4>
-
-                                                <h6 class="category text-danger"><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}</h6>
-
-                                            </div>
-
-
-                                            <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
-                                                Inscrição
-                                            </a>
-                                            <a href="{% url 'events:subscription_regulation' event=event.pk %}" class="btn btn-invert btn-raised pull-right"><i class="fa fa-print"></i> Reimprimir <strong>Ficha de Inscrição</strong></a>
-
-
-                                        {% endfor %}
-
-
-
+                                                <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
+                                                    Inscrição
+                                                </a>
+                                                <a href="{% url 'events:subscription_regulation' event=event.pk %}" class="btn btn-invert btn-raised pull-right"><i class="fa fa-print"></i> Reimprimir <strong>Ficha de Inscrição</strong></a>
+                                            {% endfor %}
+                                        </div>
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-events" data-slide="prev">
+                                            <i class="material-icons">keyboard_arrow_left</i>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-events" data-slide="next">
+                                            <i class="material-icons">keyboard_arrow_right</i>
+                                        </a>
                                     </div>
-                                    <!-- Controls -->
-									<a class="left carousel-control" href="#carousel-events" data-slide="prev">
-										<i class="material-icons">keyboard_arrow_left</i>
-									</a>
-									<a class="right carousel-control" href="#carousel-events" data-slide="next">
-										<i class="material-icons">keyboard_arrow_right</i>
-									</a>
                                 </div>
                             </div>
-                        </div>
-
-
+                            <!-- End Carousel Card -->
 
                         </div>
                     </div>
@@ -90,15 +79,6 @@
                                                     <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
                                                 </h4>
 
-
-
-
-                                                <!-- <a href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-just-icon btn-twitter btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-twitter"></i>
-                                                    <div class="ripple-container"></div>
-                                                </a> -->
                                                 <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
                                                    href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-twitter btn-round pull-right"
@@ -107,12 +87,6 @@
                                                     <div class="ripple-container"></div>
                                                 </a>
 
-                                                <!-- <a href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-just-icon btn-facebook btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-facebook-square"></i>
-                                                    <div class="ripple-container"></div>
-                                                </a> -->
                                                 <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
                                                    href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
                                                    class="btn btn-facebook btn-round pull-right"
@@ -121,30 +95,9 @@
                                                     <div class="ripple-container"></div>
                                                 </a>
 
-
-
-
-                                                <!-- <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
-                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-just-icon btn-twitter btn-simple pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-twitter"></i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
-                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-just-icon btn-facebook btn-simple pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-facebook"></i>
-                                                    <div class="ripple-container"></div>
-                                                </a> -->
-
-                                                <span class="btn btn-simple pull-right">
+                                                <!-- <span class="btn btn-simple pull-right">
                                                     <strong>Compartilhar:</strong>
-                                                <div class="ripple-container"></div></span>
-
-
-
+                                                <div class="ripple-container"></div></span> -->
 
                                             </div>
                                         {% endfor %}
@@ -207,9 +160,6 @@
                         </a>
                     </div>
                 </div>
-
-
-
 
             </div>
 
