@@ -72,8 +72,8 @@
                             <div class="form-group label-static">
                                 <label class="control-label">{{ form.date_of_birth.label }}</label>
                                 {{ form.date_of_birth.errors }}
-                                <input type="text" class="datepicker form-control" id="id_date_of_birth"
-                                       name="date_of_birth" data-date-format="dd/mm/yyyy" required>
+                                <input type="text" class="date form-control" id="id_date_of_birth"
+                                       name="date_of_birth" required>
                                 <small>{{ form.date_of_birth.help_text }}</small>
                             </div>
                         </div>
@@ -111,3 +111,19 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block endjs %}
+    <script src="{% static "mk_v1.1.1/assets/js/jquery.mask.min.js" %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //materialKit.initFormExtendedDatetimepickers();
+
+        //$('#id_date_of_birth').datetimepicker({
+        //    locale: 'pt-br',
+        //    format: 'DD/MM/YYYY'
+        //});
+
+        $('.date').mask('00/00/0000');
+    });
+    </script>
+{% endblock endjs %}
