@@ -6,10 +6,22 @@
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     {% if photo.file %}
     <meta property="og:image" content="{{ photo.file.url }}" />
+    <meta property="og:image:width" content="{{ photo.file_width|stringformat:"i" }}"/>
+    <meta property="og:image:height" content="{{ photo.file_height|stringformat:"i" }}"/>
     {% endif %}
     <meta property="og:description" content="{{ photo.album.description|safe|escape }}" />
     <meta property="og:site_name" content="GiroX" />
 {% endblock og %}
+
+{% block twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@giroxesportes">
+    <meta name="twitter:title" content="{{ photo.album.title }}">
+    <meta name="twitter:description" content="{{ photo.album.description|safe|escape }}">
+    <meta name="twitter:creator" content="@giroxesportes">
+    <meta name="twitter:image" content="{{ photo.file.url }}">
+    <meta name="twitter:domain" content="www.girox.com.br">
+{% endblock twitter %}
 
 {% block title %}{{ photo.album.title }}{% endblock %}
 
