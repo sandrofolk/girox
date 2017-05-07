@@ -84,20 +84,21 @@
                                                 <img src="{{ photo.file.thumbnail.600x600 }}"
                                                      alt="{{ photo.title }}">
 
-                                                <a href="http://twitter.com/share?url={% url 'galleries:photo_detail' album.id photo.id %}"
-                                                   class="btn btn-twitter btn-round pull-right">
-                                                    <i class="fa fa-twitter"></i>
-                                                </a>
-
-                                                <a href="http://www.facebook.com/sharer.php?u={% url 'galleries:photo_detail' album.id photo.id %}"
-                                                   class="btn btn-facebook btn-round pull-right">
-                                                    <i class="fa fa-facebook-square"></i>
+                                                <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
+                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:photo_detail' album.id photo.id %}"
+                                                   class="btn btn-twitter btn-round pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-twitter-square"></i> Twitter
                                                     <div class="ripple-container"></div>
                                                 </a>
 
-                                                <span class="btn btn-simple pull-right">
-                                                    <strong>Compartilhar:</strong>
-                                                </span>
+                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
+                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:photo_detail' album.id photo.id %}"
+                                                   class="btn btn-facebook btn-round pull-right"
+                                                   target="_blank">
+                                                    <i class="fa fa-facebook-square"></i> Facebook
+                                                    <div class="ripple-container"></div>
+                                                </a>
                                             </div>
                                         {% endfor %}
 									</div>
