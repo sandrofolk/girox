@@ -21,7 +21,7 @@
             <hr />
 
             <div class="row col-lg-12">
-                <h1 class="title">{{ photo.album.title }}</h1>
+                <h1 class="title"><a href="{% url 'galleries:album_detail' photo.album.pk %}#photo{{ photo.id|stringformat:"i" }}"><i class="material-icons">keyboard_arrow_left</i> {{ photo.album.title }}</a></h1>
                 <p class="muted"><small>Publicado {{ photo.album.date_added }}</small></p>
                 {% if photo.album.description %}<p>{{ photo.album.description|safe }}</p>{% endif %}
 
