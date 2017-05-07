@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.mail import send_mail
+from django.core import mail
 
 
 class ContactForm(forms.Form):
@@ -20,15 +20,25 @@ class ContactForm(forms.Form):
 
     def send_email(self):
         # send email using the self.cleaned_data dictionary
+        to = self.cleaned_data.get('email')
+        from_ = str(settings.DEFAULT_FROM_EMAIL),
+
         message = "{name} / {email} / {phone} disse: ".format(
             name=self.cleaned_data.get('name'),
-            email=self.cleaned_data.get('email'),
+            email=to,
             phone=self.cleaned_data.get('phone'),
         )
         message += "\n\n{0}".format(self.cleaned_data.get('message'))
-        send_mail(
+        # mail.send_mail(
+        #     subject='Contato pelo site www.girox.com.br',
+        #     message=message,
+        #     from_email=settings.DEFAULT_FROM_EMAIL,
+        #     recipient_list=[settings.DEFAULT_FROM_EMAIL],
+        # )
+        email = mail.EmailMessage(
             subject='Contato pelo site www.girox.com.br',
-            message=message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.DEFAULT_FROM_EMAIL],
+            body=message,
+            to=from_,
+            reply_to=[to],
         )
+        email.send()

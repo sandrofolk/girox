@@ -1,4 +1,6 @@
-Inscrição efetuada com sucesso.
+Inscrição efetuada com sucesso!
+
+Evento: "{{ subscription.event }}"
 
 Estes foram os dados que você nos forneceu em sua inscrição:
 
@@ -13,8 +15,11 @@ Telefone: {{ subscription.phone }}
 
 Cidade: {{ subscription.city }}
 
+Equipe: {{ subscription.team }}
+
 
 
 Atenciosamente,
 --
 Equipe GiroX
+www.girox.com.br
