@@ -34,11 +34,11 @@ def album_directory_path(instance, filename):
 
 class Photo(TimeStampedModel):
     album = models.ForeignKey(Album)
-    file_height = models.PositiveIntegerField(null=True, blank=True)
-    file_width = models.PositiveIntegerField(null=True, blank=True)
+    # file_height = models.PositiveIntegerField(null=True, blank=True)
+    # file_width = models.PositiveIntegerField(null=True, blank=True)
     # file = models.ImageField('arquivo', upload_to=album_directory_path)
-    file = VersatileImageField('arquivo', upload_to=album_directory_path,
-                               height_field='file_height', width_field='file_width')
+    file = VersatileImageField('arquivo', upload_to=album_directory_path)
+                               # height_field='file_height', width_field='file_width')
     description = models.TextField('descrição', blank=True, null=True)
     is_public = models.BooleanField('é pública?', default=True)
     tags = TaggableManager(blank=True, help_text=None)
