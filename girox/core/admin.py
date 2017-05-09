@@ -8,7 +8,11 @@ admin.site.site_title = _('GiroX')
 admin.site.index_title = 'Início'
 
 
-class LogEntryModelAdmin(admin.ModelAdmin):
+class CustomModelAdmin(admin.ModelAdmin):
+    save_on_top = True
+
+
+class LogEntryModelAdmin(CustomModelAdmin):
     list_filter = ('user',)
     date_hierarchy = 'action_time'
 

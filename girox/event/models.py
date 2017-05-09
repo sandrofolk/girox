@@ -10,6 +10,7 @@ class Event(models.Model):
     resume = models.TextField('resumo', blank=True, null=True)
     date = models.DateTimeField('data do evento')
     date_limit_subscription = models.DateTimeField('data limite de inscrição')
+    number_limit_subscription = models.PositiveIntegerField('quantidade limite de inscrições', help_text='Zero para quantidade ilimitada!', default=0)
     image = models.ImageField('imagem', upload_to='events/', null=True, blank=True)
     organizers = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name='organizadores')
 

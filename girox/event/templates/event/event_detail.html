@@ -30,15 +30,19 @@
                 <br />
                 {% endif %}
 
+                {% if event.number_limit_subscription == 0 or event.number_limit_subscription > event.subscription_set.all|length %}
+                    <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
+                        Inscrição
+                    </a>
+                {% else %}
+                    <a class="btn btn-danger" disabled="true">
+                        Vagas Esgotadas
+                    </a>
+                {% endif %}
 
-                <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">Inscrição</a>
                 <br />
                 <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
 
-
-                <!-- <a href="#" class="btn btn-danger btn-raised">
-                                Inscrições em Breve
-                            </a> -->
                 {{ event.description|safe|escape|linebreaks }}
             </div>
 

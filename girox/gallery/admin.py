@@ -1,15 +1,16 @@
-from django.contrib import admin
+from django.contrib.admin import site, TabularInline
 # from easy_thumbnails.files import get_thumbnailer
+from girox.core.admin import CustomModelAdmin
 from girox.gallery.models import Album, Photo
 
 
-class PhotoInline(admin.TabularInline):
+class PhotoInline(TabularInline):
     model = Photo
     extra = 0
     classes = ['collapse']
 
 
-class AlbumModelAdmin(admin.ModelAdmin):
+class AlbumModelAdmin(CustomModelAdmin):
     list_display = ('title',)
     list_filter = ('tags',)
     raw_id_fields = ("cover_photo",)
@@ -25,7 +26,7 @@ class AlbumModelAdmin(admin.ModelAdmin):
     # )
 
 
-class PhotoModelAdmin(admin.ModelAdmin):
+class PhotoModelAdmin(CustomModelAdmin):
     list_display = ('__str__', 'is_public', 'album', 'admin_thumbnail')
     # list_display_links = ('file',)
     list_filter = ('album', 'tags',)
@@ -42,5 +43,5 @@ class PhotoModelAdmin(admin.ModelAdmin):
     admin_thumbnail.allow_tags = True
 
 
-admin.site.register(Album, AlbumModelAdmin)
-admin.site.register(Photo, PhotoModelAdmin)
+site.register(Album, AlbumModelAdmin)
+site.register(Photo, PhotoModelAdmin)

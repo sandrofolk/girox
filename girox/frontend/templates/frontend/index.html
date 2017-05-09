@@ -4,125 +4,138 @@
 {% block content %}
     <div class="section landing-section">
         <div class="row">
-            <div class="col-md-5"> <!-- col-md-offset-1 -->
-                <h2 class="title">Próximos eventos</h2>
-                <br />
-                {% for event in event_list %}
-                <div class="card card-plain card-blog">
-                    <div class="row">
-                        <div class="col-md-12">
+            <div class="col-sm-9 col-lg-10">
+                <div class="col-md-6"> <!-- col-md-offset-1 -->
+                    <h2 class="title">Próximos eventos</h2>
+                    <br />
+                    {% for event in event_list %}
+                    <div class="card card-plain card-blog">
+                        <div class="row">
+                            <div class="col-md-12">
 
-                            <!-- Carousel Card -->
-                            <div class="card card-raised card-carousel">
-                                <div id="carousel-events" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel slide" data-ride="carousel">
-                                        <!-- Wrapper for slides -->
-                                        <div class="carousel-inner">
-                                            {% for event in event_list %}
-                                                <div class="item {% if forloop.first %}active{% endif %}">
-                                                    {% if event.image %}
-                                                        <a href="{% url 'events:event_detail' event.pk %}">
-                                                            <img src="{{ event.image.url }}"
-                                                                 alt="{{ event.title }}">
+                                <!-- Carousel Card -->
+                                <div class="card card-raised card-carousel">
+                                    <div id="carousel-events" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel slide" data-ride="carousel">
+                                            <!-- Wrapper for slides -->
+                                            <div class="carousel-inner">
+                                                {% for event in event_list %}
+                                                    <div class="item {% if forloop.first %}active{% endif %}">
+                                                        {% if event.image %}
+                                                            <a href="{% url 'events:event_detail' event.pk %}">
+                                                                <img src="{{ event.image.url }}"
+                                                                     alt="{{ event.title }}">
+                                                            </a>
+                                                        {% endif %}
+
+                                                        <h4 class="card-title">
+                                                            <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
+                                                        </h4>
+
+                                                        <h6 class="category text-danger"><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}</h6>
+                                                    </div>
+
+                                                    {% if event.number_limit_subscription == 0 or event.number_limit_subscription > event.subscription_set.all|length %}
+                                                        <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
+                                                            Inscrição
+                                                        </a>
+                                                    {% else %}
+                                                        <a class="btn btn-danger" disabled="true">
+                                                            Vagas Esgotadas
                                                         </a>
                                                     {% endif %}
 
+                                                    <a href="{% url 'events:subscription_regulation' event=event.pk %}" class="btn btn-invert btn-raised pull-right"><i class="fa fa-print"></i> Reimprimir <strong>Ficha de Inscrição</strong></a>
+                                                {% endfor %}
+                                            </div>
+                                            <!-- Controls -->
+                                            <a class="left carousel-control" href="#carousel-events" data-slide="prev">
+                                                <i class="material-icons">keyboard_arrow_left</i>
+                                            </a>
+                                            <a class="right carousel-control" href="#carousel-events" data-slide="next">
+                                                <i class="material-icons">keyboard_arrow_right</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Carousel Card -->
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="col-md-6">
+                    <h2 class="title">Galeria de Fotos</h2>
+                    <br />
+                    <div class="card card-plain card-blog">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <!-- Carousel Card -->
+                            <div class="card card-raised card-carousel">
+                                <div id="carousel-photos" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel slide" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            {% for album in album_list %}
+                                                {% if album.is_public or perms.gallery.add_photo %}
+                                                <div class="item {% if forloop.first %}active{% endif %}">
+                                                    {% if album.cover_photo %}
+                                                        <img src="{{ album.cover_photo.file.thumbnail.600x600 }}"
+                                                             alt="{{ album.cover_photo.title }}">
+                                                    {% endif %}
+
                                                     <h4 class="card-title">
-                                                        <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
+                                                        <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
                                                     </h4>
 
-                                                    <h6 class="category text-danger"><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}</h6>
-                                                </div>
+                                                    <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
+                                                       href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                       class="btn btn-twitter btn-round pull-right"
+                                                       target="_blank">
+                                                        <i class="fa fa-twitter-square"></i> Twitter
+                                                        <div class="ripple-container"></div>
+                                                    </a>
 
-                                                <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
-                                                    Inscrição
-                                                </a>
-                                                <a href="{% url 'events:subscription_regulation' event=event.pk %}" class="btn btn-invert btn-raised pull-right"><i class="fa fa-print"></i> Reimprimir <strong>Ficha de Inscrição</strong></a>
+                                                    <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
+                                                       href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
+                                                       class="btn btn-facebook btn-round pull-right"
+                                                       target="_blank">
+                                                        <i class="fa fa-facebook-square"></i> Facebook
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+
+                                                    <!-- <span class="btn btn-simple pull-right">
+                                                        <strong>Compartilhar:</strong>
+                                                    <div class="ripple-container"></div></span> -->
+
+                                                </div>
+                                                {% endif %}
                                             {% endfor %}
                                         </div>
+
                                         <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-events" data-slide="prev">
+                                        <a class="left carousel-control" href="#carousel-photos" data-slide="prev">
                                             <i class="material-icons">keyboard_arrow_left</i>
                                         </a>
-                                        <a class="right carousel-control" href="#carousel-events" data-slide="next">
+                                        <a class="right carousel-control" href="#carousel-photos" data-slide="next">
                                             <i class="material-icons">keyboard_arrow_right</i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Carousel Card -->
-
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-
-            <div class="col-md-5">
-                <h2 class="title">Galeria de Fotos</h2>
-                <br />
-                <div class="card card-plain card-blog">
-                    <div class="row">
-                        <div class="col-md-12">
-                        <!-- Carousel Card -->
-						<div class="card card-raised card-carousel">
-							<div id="carousel-photos" class="carousel slide" data-ride="carousel">
-								<div class="carousel slide" data-ride="carousel">
-									<!-- Wrapper for slides -->
-									<div class="carousel-inner">
-                                        {% for album in album_list %}
-                                            <div class="item {% if forloop.first %}active{% endif %}">
-                                                <img src="{{ album.cover_photo.file.thumbnail.600x600 }}"
-                                                     alt="{{ album.cover_photo.title }}">
-
-                                                <h4 class="card-title">
-                                                    <a href="{% url 'galleries:album_detail' album.pk %}">{{ album.title }}</a>
-                                                </h4>
-
-                                                <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
-                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-twitter btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-twitter-square"></i> Twitter
-                                                    <div class="ripple-container"></div>
-                                                </a>
-
-                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
-                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:album_detail' album.pk %}"
-                                                   class="btn btn-facebook btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-facebook-square"></i> Facebook
-                                                    <div class="ripple-container"></div>
-                                                </a>
-
-                                                <!-- <span class="btn btn-simple pull-right">
-                                                    <strong>Compartilhar:</strong>
-                                                <div class="ripple-container"></div></span> -->
-
-                                            </div>
-                                        {% endfor %}
-									</div>
-
-									<!-- Controls -->
-									<a class="left carousel-control" href="#carousel-photos" data-slide="prev">
-										<i class="material-icons">keyboard_arrow_left</i>
-									</a>
-									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
-										<i class="material-icons">keyboard_arrow_right</i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<!-- End Carousel Card -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-sm-3 col-lg-2">
 
                 <div class="card">
-                    <div class="card-title card-content content-danger text-center">
+                    <div class="card-content content-danger text-center">
                         <h5>
                             <i class="fa fa-newspaper-o"></i> Publicidade <br />
                             (Anuncie aqui)
@@ -130,10 +143,10 @@
                     </div>
 
                     <!-- <div class="card-content">
-                        <a href="{% url 'home' %}">
-                            <div class="img-responsive" style="padding-top: 10px;">
-                                <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" rel="tooltip"
-                                     title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
+                        <a href="#">
+                            <div class="img-responsive">
+                                <img src="" alt="" rel="tooltip"
+                                     title="" data-placement="bottom" data-html="true">
                             </div>
                         </a>
                     </div> -->
@@ -141,24 +154,20 @@
 
                 <div class="card">
                     <div class="card-content">
-                        <a href="{% url 'home' %}">
-                            <div class="img-responsive" style="padding-top: 10px;">
-                                <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" rel="tooltip"
-                                     title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
-                            </div>
-                        </a>
+                        <div class="img-responsive">
+                            <img src="{% static "mk_v1.1.1/assets/img/gx p.png" %}" alt="GiroX Logo" rel="tooltip"
+                                 title="<b>GiroX</b> seu evento esportivo" data-placement="bottom" data-html="true">
+                        </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-content">
-                        <a href="{% url 'home' %}">
-                            <div class="img-responsive" style="padding-top: 10px;">
-                                <img src="{% static "assets/img/anuncie-aqui-banner-300x250.png" %}" alt="Anuncie aqui" rel="tooltip"
-                                     title="<b>Anuncie aqui</b>" data-placement="bottom" data-html="true">
-                            </div>
-                        </a>
-                    </div>
+                    <a rel="nofollow" href="{% url 'contact' %}">
+                        <div class="img-responsive">
+                            <img src="{% static "assets/img/anuncie-aqui-banner-300x250.png" %}" alt="Anuncie aqui" rel="tooltip"
+                                 title="<b>Anuncie aqui</b>" data-placement="bottom" data-html="true">
+                        </div>
+                    </a>
                 </div>
 
             </div>

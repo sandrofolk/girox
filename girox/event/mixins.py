@@ -57,6 +57,7 @@ class EmailCreateMixin:
 
 
 class EmailCreateView(EmailCreateMixin, CreateView):
+
     def form_valid(self, form):
         response = super().form_valid(form)
         self.send_mail()

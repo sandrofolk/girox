@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib.admin import site
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -32,10 +32,10 @@ class UserAdmin(BaseUserAdmin):
 
 
 # Now register the new UserAdmin...
-admin.site.register(MyUser, UserAdmin)
+site.register(MyUser, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 # admin.site.unregister(Group)
 
 from django.contrib.auth.models import Permission
-admin.site.register(Permission)
+site.register(Permission)

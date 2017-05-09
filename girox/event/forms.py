@@ -1,6 +1,6 @@
 from django import forms
-# from django.core.exceptions import ValidationError
-from girox.event.models import Subscription
+from django.core.exceptions import ValidationError
+from girox.event.models import Subscription, Event
 
 
 class SubscriptionForm(forms.ModelForm):
@@ -17,7 +17,8 @@ class SubscriptionForm(forms.ModelForm):
     def clean(self):
         self.cleaned_data = super().clean()
 
-        # if not self.cleaned_data.get('email') and not self.cleaned_data.get('phone'):
-        #     raise ValidationError('Informe seu e-mail ou telefone.')
+        _event = self.cleaned_data.get('event')
+        if _event.number_limit_subscription != 0 and _event.number_limit_subscription <= _event.subscription_set.count():
+            raise ValidationError('As vagas estão esgotadas para este evento!')
 
         return self.cleaned_data

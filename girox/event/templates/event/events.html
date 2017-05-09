@@ -11,40 +11,35 @@
 
                     {% if event.image %}
                         <div class="col-md-4">
-                            <!-- <div class="card card-blog card-plain"> -->
-                                <div class="card-image">
-                                    <a href="{% url 'events:event_detail' event.pk %}">
-                                        <img class="img img-raised" src="{{ event.image.url }}" />
-                                    </a>
-                                </div>
-                            <!-- </div> -->
+                            <div class="card-image">
+                                <a href="{% url 'events:event_detail' event.pk %}">
+                                    <img class="img img-raised" src="{{ event.image.url }}" />
+                                </a>
+                            </div>
                         </div>
                     {% endif %}
 
                     <div class="{% if event.image %}col-md-8{% else %}col-md-12{% endif %}">
-                        <!-- <div class="card card-blog card-plain"> -->
-                            <h3 class="card-title">
-                                <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
-                            </h3>
-                            <p class="card-description">
-                                <h4><strong>Data evento: </strong>{{ event.date|date:"d/m/Y H:i" }}<br></h4>
-                                <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
-{#                                {{ event.description }}#}
-                            </p>
+                        <h3 class="card-title">
+                            <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
+                        </h3>
+                        <p class="card-description">
+                            <h4><strong>Data evento: </strong>{{ event.date|date:"d/m/Y H:i" }}<br></h4>
+                            <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
+                        </p>
 
+                        {% if event.number_limit_subscription == 0 or event.number_limit_subscription > event.subscription_set.all|length %}
                             <a href="{% url 'events:subscription_new' event=event.pk %}" class="btn btn-danger btn-raised">
                                 Inscrição
                             </a>
-                            <br />
-                            <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
+                        {% else %}
+                            <a class="btn btn-danger" disabled="true">
+                                Vagas Esgotadas
+                            </a>
+                        {% endif %}
 
-
-                            <!-- <a href="#" class="btn btn-danger btn-raised">
-                                Inscrições em Breve
-                            </a> -->
-
-
-                        <!-- </div> -->
+                        <br />
+                        <h5><a href="{% url 'events:subscription_regulation' event=event.pk %}" class="text-danger">Reimprimir <strong>Ficha de Inscrição</strong></a></h5>
                     </div>
                 </div>
             </div>

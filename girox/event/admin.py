@@ -1,15 +1,16 @@
-from django.contrib import admin
+from django.contrib.admin import site, StackedInline, TabularInline, RelatedOnlyFieldListFilter
 from django.shortcuts import render
 
+from girox.core.admin import CustomModelAdmin
 from girox.event.models import Event, Subscription, EventSponsorsImage, SubscriptionProxy
 
 
-class SubscriptionInline(admin.StackedInline):
+class SubscriptionInline(StackedInline):
     model = Subscription
     extra = 0
 
 
-class EventSponsorsImageInline(admin.TabularInline):
+class EventSponsorsImageInline(TabularInline):
     model = EventSponsorsImage
     extra = 0
 
@@ -22,7 +23,7 @@ def print_subscriptions(modeladmin, request, queryset):
 print_subscriptions.short_description = "Imprimir as inscrições dos eventos selecionados"
 
 
-class EventModelAdmin(admin.ModelAdmin):
+class EventModelAdmin(CustomModelAdmin):
     list_display = ('title', 'date', 'date_limit_subscription')
     search_fields = ('title', 'description')
     filter_horizontal = ('organizers',)
@@ -33,19 +34,19 @@ class EventModelAdmin(admin.ModelAdmin):
     actions = [print_subscriptions]
 
 
-class SubscriptionModelAdmin(admin.ModelAdmin):
+class SubscriptionModelAdmin(CustomModelAdmin):
     list_display = ('id', 'name', 'rg', 'cpf')
     search_fields = ('name', 'rg', 'cpf')
 
 
-class SubscriptionProxyAdmin(admin.ModelAdmin):
+class SubscriptionProxyAdmin(CustomModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
     search_fields = ('id', 'name', 'rg', 'cpf', 'email', 'phone', 'address', 'city', 'team')
     change_form_template = "admin/view.html"
     view_on_site = False
     list_filter = (
-        ('event', admin.RelatedOnlyFieldListFilter),
+        ('event', RelatedOnlyFieldListFilter),
     )
 
     def get_queryset(self, request):
@@ -83,6 +84,6 @@ class SubscriptionProxyAdmin(admin.ModelAdmin):
         pass
 
 
-admin.site.register(Event, EventModelAdmin)
-admin.site.register(Subscription, SubscriptionModelAdmin)
-admin.site.register(SubscriptionProxy, SubscriptionProxyAdmin)
+site.register(Event, EventModelAdmin)
+site.register(Subscription, SubscriptionModelAdmin)
+site.register(SubscriptionProxy, SubscriptionProxyAdmin)
