@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+
+    <p>Preencha os dados abaixo antes de enviar o e-mail:</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <table>
+        {{ send_mail_form.as_table }}
+        </table>
+
+        <p>O e-mail será enviado para os inscritos nos seguintes eventos:</p>
+
+        <ul>{{ events|unordered_list }}</ul>
+
+        <input type="hidden" name="action" value="send_mail" />
+        <input type="submit" name="send" value="Enviar" />
+    </form>
+
+{% endblock %}

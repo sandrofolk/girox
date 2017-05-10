@@ -1,5 +1,10 @@
 from django.contrib.admin import site, StackedInline, TabularInline, RelatedOnlyFieldListFilter
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django import forms
+from django.contrib.admin import ACTION_CHECKBOX_NAME
+from django.template.loader import get_template
+from django.template import Context
 
 from girox.core.admin import CustomModelAdmin
 from girox.event.models import Event, Subscription, EventSponsorsImage, SubscriptionProxy
@@ -23,6 +28,56 @@ def print_subscriptions(modeladmin, request, queryset):
 print_subscriptions.short_description = "Imprimir as inscrições dos eventos selecionados"
 
 
+from django.core.mail import EmailMultiAlternatives
+
+
+class SendMailForm(forms.Form):
+    _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
+    subject = forms.CharField()
+    message_text = forms.CharField(widget=forms.Textarea)
+    message_html = forms.CharField(widget=forms.Textarea)
+
+
+def send_mail(modeladmin, request, queryset):
+    form = None
+
+    if 'send' in request.POST:
+        form = SendMailForm(request.POST)
+
+        if form.is_valid():
+            from_email = 'contato@girox.com.br'
+            to = []
+
+            subject = form.cleaned_data['subject']
+            message_text = form.cleaned_data['message_text']
+            message_html = form.cleaned_data['message_html']
+
+            text_template = get_template('frontend/base_email.txt')
+            html_template = get_template('frontend/base_email.html')
+            d = Context({'subject': subject, 'message_text': message_text, 'message_html': message_html})
+            text_content = text_template.render(d)
+            html_content = html_template.render(d)
+
+            for event in queryset:
+                for subscription in event.subscription_set.all():
+                    to += [subscription.email]
+
+            msg = EmailMultiAlternatives(subject=subject, body=text_content, from_email=from_email, to=[from_email], bcc=to)
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+
+            modeladmin.message_user(request, "E-mails enviados com sucesso!")
+            return HttpResponseRedirect(request.get_full_path())
+
+    if not form:
+        form = SendMailForm(initial={'_selected_action': request.POST.getlist(ACTION_CHECKBOX_NAME)})
+
+    return render(request, 'event/send_mail.html', {'events': queryset,
+                                                    'send_mail_form': form,
+                                                    })
+send_mail.short_description = "Enviar e-mail para os inscritos dos eventos selecionados"
+
+
 class EventModelAdmin(CustomModelAdmin):
     list_display = ('title', 'date', 'date_limit_subscription')
     search_fields = ('title', 'description')
@@ -31,7 +86,7 @@ class EventModelAdmin(CustomModelAdmin):
         EventSponsorsImageInline,
         # SubscriptionInline,
     ]
-    actions = [print_subscriptions]
+    actions = [print_subscriptions, send_mail]
 
 
 class SubscriptionModelAdmin(CustomModelAdmin):

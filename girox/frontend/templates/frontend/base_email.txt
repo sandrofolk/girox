@@ -1,0 +1,6 @@
+{{ subject }}
+
+{{ message_text }}
+
+Copyright © 2017, Todos os direitos reservados.
+www.girox.com.br
