@@ -33,6 +33,10 @@ contact_success = TemplateView.as_view(
     template_name='frontend/contact_success.html'
 )
 
+plans = TemplateView.as_view(
+    template_name='frontend/plans.html'
+)
+
 # home = TemplateView.as_view(
 #     template_name='frontend/index.html'
 # )

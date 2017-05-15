@@ -1,0 +1,103 @@
+{% extends "frontend/base.html" %}
+
+{% block content %}
+
+	<!--     *********    PRICING 4     *********      -->
+
+	<div class="pricing-4" id="pricing-4">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center">
+					<h2 class="title">Escolha seu plano</h2>
+					<h5 class="description">* renovação de contrato anual</h5>
+					<div class="section-space"></div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card card-pricing card-plain">
+						<div class="card-content">
+							<h6 class="category">Top 20</h6>
+							<h1 class="card-title"><small>R$</small>200,00</h1>
+							<ul>
+								<li><i class="material-icons text-success">check</i> Entre os 20 primeiros</li>
+								<li><i class="material-icons text-danger">close</i> Entre os 10 primeiros</li>
+								<li><i class="material-icons text-danger">close</i> Entre os 05 primeiros</li>
+							</ul>
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO: NAO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                            <form action="https://pagseguro.uol.com.br/pre-approvals/request.html" method="post">
+                                <input type="hidden" name="code" value="F7A32C782F2F2726640B3F99C31D68E8" />
+                                <input type="hidden" name="iot" value="button" />
+                                <!-- <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/120x53-assinar.gif" name="submit" alt="Pague com PagSeguro - É rápido, grátis e seguro!" width="120" height="53" /> -->
+                                <button class="btn btn-success btn-round">
+                                    Assinar
+                                </button>
+                            </form>
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+							<!-- <a href="#pablo" class="btn btn-success btn-round">
+								Assinar
+							</a> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card card-pricing card-raised">
+						<div class="card-content content-success">
+							<h6 class="category">Top 10</h6>
+							<h1 class="card-title"><small>R$</small>400,00</h1>
+							<ul>
+								<li><i class="material-icons text-success">check</i> Entre os 20 primeiros</li>
+								<li><i class="material-icons text-success">check</i> Entre os 10 primeiros</li>
+								<li><i class="material-icons text-danger">close</i> Entre os 05 primeiros</li>
+							</ul>
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO: NAO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                            <form action="https://pagseguro.uol.com.br/pre-approvals/request.html" method="post">
+                                <input type="hidden" name="code" value="690BC1334F4F3F3BB4ED3F910817E448" />
+                                <input type="hidden" name="iot" value="button" />
+                                <!-- <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/120x53-assinar-cinza.gif" name="submit" alt="Pague com PagSeguro - É rápido, grátis e seguro!" width="120" height="53" /> -->
+                                <button class="btn btn-white btn-raise btn-round">
+                                    Assinar
+                                </button>
+                            </form>
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+							<!-- <a href="#pablo" class="btn btn-white btn-raise btn-round">
+								Assinar
+							</a> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card card-pricing card-plain">
+						<div class="card-content">
+							<h6 class="category">Top 05</h6>
+							<h1 class="card-title"><small>R$</small>800,00</h1>
+							<ul>
+								<li><i class="material-icons text-success">check</i> Entre os 20 primeiros</li>
+								<li><i class="material-icons text-success">check</i> Entre os 10 primeiros</li>
+								<li><i class="material-icons text-success">check</i> Entre os 05 primeiros</li>
+							</ul>
+                            <!-- INICIO FORMULARIO BOTAO PAGSEGURO: NAO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+                            <form action="https://pagseguro.uol.com.br/pre-approvals/request.html" method="post">
+                                <input type="hidden" name="code" value="4464C19D5C5CD98CC40D5FA68D8CEE69" />
+                                <input type="hidden" name="iot" value="button" />
+                                <!-- <input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/assinaturas/120x53-assinar.gif" name="submit" alt="Pague com PagSeguro - É rápido, grátis e seguro!" width="120" height="53" /> -->
+                                <button class="btn btn-success btn-round">
+                                    Assinar
+                                </button>
+                            </form>
+                            <!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!--     *********    END PRICING 4      *********      -->
+{% endblock content %}
