@@ -74,6 +74,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django.contrib.admindocs',
 )
 
 THIRD_PARTS_APPS = (

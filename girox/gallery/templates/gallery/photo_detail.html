@@ -40,8 +40,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <img src="{{ photo.file.url }}"
+                             id="photo_{{ photo.id }}"
                              class="img-responsive img-thumbnail center-block"
                              alt="{{ photo.title }}">
+                        {% if photo.get_previous_by_created %}
+                            <a href="{% url 'galleries:photo_detail' photo.get_previous_by_created.album.id photo.get_previous_by_created.id %}#photo_{{ photo.get_previous_by_created.id }}"
+                               class="title pull-left"><i class="material-icons">keyboard_arrow_left</i>anterior
+                            </a>
+                        {% endif %}
+                        {% if photo.get_next_by_created %}
+                            <a href="{% url 'galleries:photo_detail' photo.get_next_by_created.album.id photo.get_next_by_created.id %}#photo_{{ photo.get_next_by_created.id }}"
+                               class="title pull-right">próxima<i class="material-icons">keyboard_arrow_right</i>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
