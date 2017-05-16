@@ -31,8 +31,13 @@ from girox.frontend.views import HomePageView, ContactView, contact_success, pla
 #     'photologue_photos': PhotoSitemap,
 # }
 
-urlpatterns = i18n_patterns(
-    url(_(r'^admin/doc/'), include('django.contrib.admindocs.urls')),
+urlpatterns = []
+if settings.DEVELOPER:
+    urlpatterns += [
+        url(_(r'^admin/doc/'), include('django.contrib.admindocs.urls')),
+    ]
+
+urlpatterns += i18n_patterns(
     url(_(r'^admin/'), admin.site.urls),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     #     name='django.contrib.sitemaps.views.sitemap'),
