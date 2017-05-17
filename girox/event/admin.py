@@ -94,8 +94,16 @@ class SubscriptionModelAdmin(CustomModelAdmin):
     search_fields = ('name', 'rg', 'cpf')
 
 
+def print_subscriptions_list(modeladmin, request, queryset):
+    context = {
+        'subscriptions': queryset
+    }
+    return render(request, 'event/print_subscriptions_list.html', context)
+print_subscriptions_list.short_description = "Imprimir os participantes selecionados"
+
+
 class SubscriptionProxyAdmin(CustomModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'rg', 'cpf')
     list_display_links = ('id', 'name')
     search_fields = ('id', 'name', 'rg', 'cpf', 'email', 'phone', 'address', 'city', 'team')
     change_form_template = "admin/view.html"
@@ -103,6 +111,7 @@ class SubscriptionProxyAdmin(CustomModelAdmin):
     list_filter = (
         ('event', RelatedOnlyFieldListFilter),
     )
+    actions = [print_subscriptions_list,]
 
     def get_queryset(self, request):
         qs = super(SubscriptionProxyAdmin, self).get_queryset(request)

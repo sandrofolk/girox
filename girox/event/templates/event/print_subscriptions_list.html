@@ -1,0 +1,29 @@
+{% extends "frontend/base_print.html" %}
+
+{% block content %}
+    <h1>Lista de Participantes</h1>
+    <table class="table table-responsive table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th class="text-center">#</th>
+                <th>NOME</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>ASSINATURA</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for subscription in subscriptions %}
+            <tr>
+                <td class="text-right">{{ subscription.id }}</td>
+                <td>{{ subscription.name }}</td>
+                <td>{{ subscription.rg }}</td>
+                <td>{{ subscription.cpf }}</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock content %}
