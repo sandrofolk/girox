@@ -103,7 +103,7 @@ class EventModelAdmin(CustomModelAdmin):
         EventSponsorsImageInline,
         # SubscriptionInline,
     ]
-    actions = [print_subscriptions, send_mail, export_subscriptions_emails]
+    actions = [print_subscriptions, export_subscriptions_emails]
 
 
 class SubscriptionModelAdmin(CustomModelAdmin):
