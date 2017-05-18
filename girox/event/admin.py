@@ -1,5 +1,7 @@
+import csv
+
 from django.contrib.admin import site, StackedInline, TabularInline, RelatedOnlyFieldListFilter
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django import forms
 from django.contrib.admin import ACTION_CHECKBOX_NAME
@@ -18,6 +20,21 @@ class SubscriptionInline(StackedInline):
 class EventSponsorsImageInline(TabularInline):
     model = EventSponsorsImage
     extra = 0
+
+
+def export_subscriptions_emails(modeladmin, request, queryset):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="emails_dos_inscritos.csv"'
+
+    writer = csv.writer(response)
+    for event in queryset:
+        writer.writerow([event.title, ])
+        for subscription in event.subscription_set.all():
+            writer.writerow([subscription.email])
+
+    return response
+export_subscriptions_emails.short_description = "Exportar e-mails dos inscritos dos eventos selecionados"
 
 
 def print_subscriptions(modeladmin, request, queryset):
@@ -86,7 +103,7 @@ class EventModelAdmin(CustomModelAdmin):
         EventSponsorsImageInline,
         # SubscriptionInline,
     ]
-    actions = [print_subscriptions, send_mail]
+    actions = [print_subscriptions, send_mail, export_subscriptions_emails]
 
 
 class SubscriptionModelAdmin(CustomModelAdmin):
