@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load tz %}
 
 <div class="section landing-section">
     <div class="row">
@@ -24,8 +25,9 @@
                             <a href="{% url 'events:event_detail' event.pk %}">{{ event.title }}</a>
                         </h3>
                         <p class="card-description">
-                            <h4><strong>Data evento: </strong>{{ event.date|date:"d/m/Y H:i" }}<br></h4>
-                            <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|date:"d/m/Y H:i" }}<br></h4>
+
+                            <h4><strong>Data evento: </strong>{{ event.date|timezone:"Brazil/East"|date:"d/m/Y H:i" }} <small>Horário de Brasília</small><br></h4>
+                            <h4><strong>Inscrição até: </strong>{{ event.date_limit_subscription|timezone:"Brazil/East"|date:"d/m/Y H:i" }} <small>Horário de Brasília</small><br></h4>
                         </p>
 
                         {% if event.number_limit_subscription == 0 or event.number_limit_subscription > event.subscription_set.all|length %}
