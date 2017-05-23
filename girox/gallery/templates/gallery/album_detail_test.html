@@ -82,7 +82,7 @@
                 {% for photo in album.photo_set.all %}
 
                     <a href="{{ photo.file.thumbnail.600x600 }}"
-                       data-photoid="{{ photo.id }}">
+                       data-photoid="{{ photo.id|stringformat:"i" }}">
                         <img class="img-responsive img-thumbnail" src="{{ photo.file.thumbnail.220x220 }}" alt="{{ photo.title }}">
                     </a>
 
