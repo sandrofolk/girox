@@ -81,7 +81,7 @@
                 <div id="links" class="row" style="text-align: center;">
                 {% for photo in album.photo_set.all %}
 
-                    <a href="{{ photo.file.thumbnail.600x600 }}"
+                    <a href="{{ photo.file.url }}"
                        data-photoid="{{ photo.id|stringformat:"i" }}">
                         <img class="img-responsive img-thumbnail" src="{{ photo.file.thumbnail.220x220 }}" alt="{{ photo.title }}">
                     </a>
@@ -158,7 +158,7 @@
         <link rel="stylesheet" href="{% static "assets/css/dropzone.min.css" %}">
     {% endif %}
 
-    <link rel="stylesheet" href="{% static "blueimp/css/blueimp-gallery.min.css" %}">
+    <link rel="stylesheet" href="{% static "blueimp/css/blueimp-gallery.css" %}">
     <style type="text/css">
     .blueimp-gallery > .actions {
         position: absolute;
@@ -212,9 +212,8 @@
                         node = this.container.find('.actions');
                     node.empty();
                     if (text) {
-                        //node[0].appendChild(document.createElement(text));
                         _a_twitter = document.createElement("a");
-                        _a_twitter.setAttribute("class", "btn btn-twitter btn-round btn-xs");
+                        _a_twitter.setAttribute("class", "btn btn-twitter btn-round");
                         _a_twitter.setAttribute("rel", "tooltip");
                         _a_twitter.setAttribute("title", "Compartilhar no Twitter");
                         _a_twitter.setAttribute("data-placement", "top");
@@ -222,11 +221,11 @@
                         _a_twitter.setAttribute("target", "_blank");
                         _i_twitter = document.createElement("i");
                         _i_twitter.setAttribute("class", "fa fa-twitter-square");
-                        _i_twitter.appendChild(document.createTextNode(" Twitter"));
                         _a_twitter.appendChild(_i_twitter);
+                        _a_twitter.appendChild(document.createTextNode(" Twitter"));
 
                         _a_facebook = document.createElement("a");
-                        _a_facebook.setAttribute("class", "btn btn-facebook btn-round btn-xs");
+                        _a_facebook.setAttribute("class", "btn btn-facebook btn-round");
                         _a_facebook.setAttribute("rel", "tooltip");
                         _a_facebook.setAttribute("title", "Compartilhar no Facebook");
                         _a_facebook.setAttribute("data-placement", "top");
@@ -234,8 +233,8 @@
                         _a_facebook.setAttribute("target", "_blank");
                         _i_facebook = document.createElement("i");
                         _i_facebook.setAttribute("class", "fa fa-facebook-square");
-                        _i_facebook.appendChild(document.createTextNode(" Facebook"));
                         _a_facebook.appendChild(_i_facebook);
+                        _a_facebook.appendChild(document.createTextNode(" Facebook"));
 
                         node[0].appendChild(_a_facebook);
                         node[0].appendChild(_a_twitter);
