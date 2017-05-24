@@ -1,6 +1,5 @@
 {% extends "frontend/base.html" %}
 {% load static from staticfiles %}
-{#{% load thumbnail %}#}
 
 {% block og %}
     <meta property="og:title" content="{{ album.title }}" />
@@ -28,34 +27,8 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="sharethis-inline-share-buttons"></div>
-            TESTEEEEEEEEE
 
             <hr />
-
-            {% comment %}
-            <div class="row col-lg-12">
-                <h1 class="title">{{ album.title }}</h1>
-                <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
-                {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
-
-                <div class="row">
-                {% for photo in album.photo_set.all %}
-                    <div class="col-md-2">
-                        <a href="javascript:;" class="pop">
-                            <img src="{{ photo.file.thumbnail.220x220 }}"
-                                 class="img-responsive img-thumbnail center-block"
-                                 alt="{{ photo.title }}"
-                                 id="photo{{ photo.id|stringformat:"i" }}">
-                        </a>
-                    </div>
-                    {% if forloop.counter|divisibleby:6 %}
-                    </div>
-                    <div class="row">
-                    {% endif %}
-                {% endfor %}
-                </div>
-            </div>
-            {% endcomment %}
 
             <!-- Upload Photos -->
             {% if user.is_staff and perms.gallery.add_photo %}
@@ -81,7 +54,7 @@
                 <div id="links" class="row" style="text-align: center;">
                 {% for photo in album.photo_set.all %}
 
-                    <a href="{{ photo.file.url }}"
+                    <a href="{{ photo.file.thumbnail.1200x1200 }}"
                        data-photoid="{{ photo.id|stringformat:"i" }}">
                         <img class="img-responsive img-thumbnail" src="{{ photo.file.thumbnail.220x220 }}" alt="{{ photo.title }}">
                     </a>
@@ -93,65 +66,6 @@
         </div>
     </div>
 {% endblock content %}
-
-{% block endbody %}
-    {% comment %}
-    <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-photo">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- Carousel Card -->
-						<div class="card card-raised card-carousel">
-							<div id="carousel-photos" class="carousel slide" data-ride="carousel" data-interval="false">
-								<!-- <div class="carousel slide" data-ride="carousel"> -->
-									<!-- Wrapper for slides -->
-									<div class="carousel-inner">
-                                        {% for photo in album.photo_set.all %}
-                                            <div class="carousel_item item {% if forloop.first %}active{% endif %}" id="item_photo{{ photo.id|stringformat:"i" }}">
-                                                <img src="{{ photo.file.thumbnail.600x600 }}"
-                                                     alt="{{ photo.title }}">
-
-                                                <a rel="tooltip" title="Compartilhar no Twitter" data-placement="top"
-                                                   href="http://twitter.com/share?url={{ request.scheme }}://{{ request.get_host }}{% url 'galleries:photo_detail' album.id photo.id %}"
-                                                   class="btn btn-twitter btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-twitter-square"></i> Twitter
-                                                    <div class="ripple-container"></div>
-                                                </a>
-
-                                                <a rel="tooltip" title="Compartilhar no Facebook" data-placement="top"
-                                                   href="http://www.facebook.com/sharer.php?u={{ request.get_host }}{% url 'galleries:photo_detail' album.id photo.id %}"
-                                                   class="btn btn-facebook btn-round pull-right"
-                                                   target="_blank">
-                                                    <i class="fa fa-facebook-square"></i> Facebook
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                            </div>
-                                        {% endfor %}
-									</div>
-
-									<!-- Controls -->
-									<a class="left carousel-control" href="#carousel-photos" data-slide="prev">
-										<i class="material-icons">keyboard_arrow_left</i>
-									</a>
-									<a class="right carousel-control" href="#carousel-photos" data-slide="next">
-										<i class="material-icons">keyboard_arrow_right</i>
-									</a>
-								<!-- </div> -->
-							</div>
-						</div>
-						<!-- End Carousel Card -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endcomment %}
-{% endblock endbody %}
 
 {% block endcss %}
     {% if user.is_staff and perms.gallery.add_photo %}
@@ -178,25 +92,6 @@
     {% if user.is_staff and perms.gallery.add_photo %}
         <script src="{% static "assets/js/dropzone.min.js" %}" type="text/javascript"></script>
     {% endif %}
-
-    {% comment %}
-    <script type="text/javascript">
-    $(document).ready(function() {
-        //$('.carousel').carousel('pause');
-    });
-
-    $(function() {
-        $('.pop').on('click', function() {
-            $('.carousel_item').removeClass('active');
-
-            var _item = '#item_'+$(this).find('img').attr('id');
-            $(_item).addClass('active');
-
-            $('#photoModal').modal('show');
-        });
-    });
-    </script>
-    {% endcomment %}
 
     <script src="{% static "blueimp/js/blueimp-gallery.min.js" %}"></script>
     <script>

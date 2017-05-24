@@ -243,7 +243,8 @@ VERSATILEIMAGEFIELD_SETTINGS = {
 VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
     'gallery': [
         ('mini_photo', 'thumbnail__220x220'),
-        ('modal_photo', 'thumbnail__600x600'),
+        # ('modal_photo', 'thumbnail__600x600'),
+        ('modal_photo', 'thumbnail__1200x1200'),
     ],
 }
 
