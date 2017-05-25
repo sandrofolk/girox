@@ -57,3 +57,16 @@ Comando para desabilitar o collectstatic do heroku
 ```console
 heroku config:set DISABLE_COLLECTSTATIC=1
 ```
+
+Como gerar imagens do versatileimagefield
+```
+heroku run python manage.py shell_plus
+from versatileimagefield.image_warmer import VersatileImageFieldWarmer
+photo_img_warmer = VersatileImageFieldWarmer(
+    instance_or_queryset=Photo.objects.all(),
+    rendition_key_set='gallery',
+    image_attr='file',
+    verbose=True
+)
+num_created, failed_to_create = photo_img_warmer.warm()
+```

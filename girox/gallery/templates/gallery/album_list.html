@@ -1,13 +1,11 @@
 {% extends "frontend/base.html" %}
 {% load static from staticfiles %}
-{#{% load thumbnail %}#}
 
 {% block title %}Galeria de Fotos{% endblock %}
 
 {% block container %}cd-section{% endblock container %}
 
 {% block content %}
-{#section-gray#}
     <div class="">
         <div class="cards">
             <div class="container">
@@ -22,8 +20,7 @@
                                 <div class="card card-blog section-light-gray">
                                     <div class="card-image">
                                         <a href="{{ album.get_absolute_url }}">
-                                            <!-- <img class="img" src="{{ album.cover_photo.file }}" /> |thumbnail_url:'cover_photo' -->
-                                            <img class="img" src="{{ album.cover_photo.file.thumbnail.600x600 }}" />
+                                            <img class="img" src="{{ album.cover_photo.file.thumbnail.1200x1200 }}" />
                                         </a>
                                     </div>
 

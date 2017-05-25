@@ -17,7 +17,7 @@ album_list = ListView.as_view(model=Album)
 
 album_detail = DetailView.as_view(model=Album)
 
-album_detail_test = DetailView.as_view(model=Album, template_name="gallery/album_detail_test.html")
+# album_detail_test = DetailView.as_view(model=Album, template_name="gallery/album_detail_test.html")
 
 photo_detail = DetailView.as_view(model=Photo)
 
