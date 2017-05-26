@@ -24,46 +24,58 @@
 {% block title %}{{ album.title }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="sharethis-inline-share-buttons"></div>
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-sm-9 col-lg-10">
+                <div class="sharethis-inline-share-buttons"></div>
 
-            <hr />
+                <hr />
 
-            <!-- Upload Photos -->
-            {% if user.is_staff and perms.gallery.add_photo %}
-                <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
-                    {% csrf_token %}
-                </form>
-            {% endif %}
 
-            <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-                <div class="slides"></div>
-                <div class="actions"></div>
-                <a class="prev">‹</a>
-                <a class="next">›</a>
-                <a class="close">×</a>
-                <a class="play-pause"></a>
-            </div>
 
-            <div class="row col-lg-12">
-                <h1 class="title">{{ album.title }}</h1>
-                <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
-                {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
-                <div id="links" class="row" style="text-align: center;">
-                {% for photo in album.photo_set.all %}
+                <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+                <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                    <div class="slides"></div>
+                    <div class="actions"></div>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                </div>
 
-                    <a href="{{ photo.file.thumbnail.1200x1200 }}"
-                       data-photoid="{{ photo.id|stringformat:"i" }}">
-                        <img class="img-responsive img-thumbnail" src="{{ photo.file.thumbnail.220x220 }}" alt="{{ photo.title }}">
-                    </a>
+                <div class="row col-lg-12">
+                    <h1 class="title">{{ album.title }}</h1>
+                    <p class="muted"><small>Publicado {{ album.date_added }}</small></p>
+                    {% if album.description %}<p>{{ album.description|safe }}</p>{% endif %}
+                    <div id="links" class="row" style="text-align: center;">
+                    {% for photo in album.photo_set.all %}
 
-                {% endfor %}
+                        <a href="{{ photo.file.thumbnail.1200x1200 }}"
+                           data-photoid="{{ photo.id|stringformat:"i" }}">
+                            <img class="img-responsive img-thumbnail" src="{{ photo.file.thumbnail.220x220 }}" alt="{{ photo.title }}">
+                        </a>
+
+                    {% endfor %}
+                    </div>
                 </div>
             </div>
 
+            <div class="col-sm-3 col-lg-2">
+                {% include 'advertising/advertising.html' %}
+            </div>
+
+
+
         </div>
+
+    <!-- Upload Photos -->
+                {% if user.is_staff and perms.gallery.add_photo %}
+                    <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
+                        {% csrf_token %}
+                    </form>
+                {% endif %}
+
+
     </div>
 {% endblock content %}
 
@@ -117,7 +129,7 @@
                         _i_twitter = document.createElement("i");
                         _i_twitter.setAttribute("class", "fa fa-twitter-square");
                         _a_twitter.appendChild(_i_twitter);
-                        _a_twitter.appendChild(document.createTextNode(" Twitter"));
+                        _a_twitter.appendChild(document.createTextNode(" Compartilhar"));
 
                         _a_facebook = document.createElement("a");
                         _a_facebook.setAttribute("class", "btn btn-facebook btn-round");
@@ -129,7 +141,7 @@
                         _i_facebook = document.createElement("i");
                         _i_facebook.setAttribute("class", "fa fa-facebook-square");
                         _a_facebook.appendChild(_i_facebook);
-                        _a_facebook.appendChild(document.createTextNode(" Facebook"));
+                        _a_facebook.appendChild(document.createTextNode(" Compartilhar"));
 
                         node[0].appendChild(_a_facebook);
                         node[0].appendChild(_a_twitter);
