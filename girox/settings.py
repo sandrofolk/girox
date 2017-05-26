@@ -96,6 +96,7 @@ PROJECT_APPS = (
     'girox.core.apps.CoreConfig',
     'girox.event.apps.EventConfig',
     'girox.gallery.apps.GalleryConfig',
+    'girox.advertising.apps.AdvertisingConfig',
 
     'girox.frontend',
 )

@@ -1,0 +1,30 @@
+{% load static from staticfiles %}
+
+<div class="card">
+    <div class="card-content content-danger text-center">
+        <h5>
+            <i class="fa fa-newspaper-o"></i> Publicidade <br />
+            (Anuncie aqui)
+        </h5>
+    </div>
+</div>
+
+
+<div class="card">
+    <a rel="nofollow" target="_blank"
+       href="https://www.facebook.com/fisioterapiasarafolk/">
+        <div class="img-responsive">
+            <img src="{% static "assets/img/sara.png" %}" alt="Fisioterapia <b>Sara Folk</b>" rel="tooltip"
+                 title="Fisioterapia <b>Sara Folk</b>" data-placement="bottom" data-html="true">
+        </div>
+    </a>
+</div>
+
+<div class="card">
+    <a rel="nofollow" href="{% url 'plans' %}">
+        <div class="img-responsive">
+            <img src="{% static "assets/img/anuncie-aqui-banner-300x250.png" %}" alt="Anuncie aqui" rel="tooltip"
+                 title="<b>Anuncie aqui</b>" data-placement="bottom" data-html="true">
+        </div>
+    </a>
+</div>
