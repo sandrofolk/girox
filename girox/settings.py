@@ -66,6 +66,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # Application definition
 
 DJANGO_APPS = (
+    'jet',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,6 +91,7 @@ THIRD_PARTS_APPS = (
     'django_cleanup',
     # 'easy_thumbnails',
     'versatileimagefield',  # http://django-versatileimagefield.readthedocs.io/en/latest/index.html
+    'django_summernote',
 )
 
 PROJECT_APPS = (
@@ -277,3 +280,16 @@ SITE_FB_APP_ID = ''
 # https://django-taggit.readthedocs.io/en/latest/index.html
 
 TAGGIT_CASE_INSENSITIVE = True
+
+
+# https://github.com/summernote/django-summernote
+
+SUMMERNOTE_CONFIG = {
+    # Change editor size
+    'width': '100%',
+
+    'lang': 'pt-BR',
+
+    # You can disable file upload feature.
+    'disable_upload': True,
+}

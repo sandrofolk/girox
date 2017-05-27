@@ -38,6 +38,9 @@ if settings.DEVELOPER:
     ]
 
 urlpatterns += i18n_patterns(
+    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(r'^summernote/', include('django_summernote.urls')),
+
     url(_(r'^admin/'), admin.site.urls),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
     #     name='django.contrib.sitemaps.views.sitemap'),

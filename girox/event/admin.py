@@ -1,5 +1,4 @@
 import csv
-
 from django.contrib.admin import site, StackedInline, TabularInline, RelatedOnlyFieldListFilter
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
@@ -7,6 +6,7 @@ from django import forms
 from django.contrib.admin import ACTION_CHECKBOX_NAME
 from django.template.loader import get_template
 from django.template import Context
+from django_summernote.widgets import SummernoteWidget
 
 from girox.core.admin import CustomModelAdmin
 from girox.event.models import Event, Subscription, EventSponsorsImage, SubscriptionProxy
@@ -34,6 +34,8 @@ def export_subscriptions_emails(modeladmin, request, queryset):
             writer.writerow([subscription.email])
 
     return response
+
+
 export_subscriptions_emails.short_description = "Exportar e-mails dos inscritos dos eventos selecionados"
 
 
@@ -42,8 +44,9 @@ def print_subscriptions(modeladmin, request, queryset):
         'events': queryset
     }
     return render(request, 'event/print_subscriptions.html', context)
-print_subscriptions.short_description = "Imprimir as inscrições dos eventos selecionados"
 
+
+print_subscriptions.short_description = "Imprimir as inscrições dos eventos selecionados"
 
 from django.core.mail import EmailMultiAlternatives
 
@@ -79,7 +82,8 @@ def send_mail(modeladmin, request, queryset):
                 for subscription in event.subscription_set.all():
                     to += [subscription.email]
 
-            msg = EmailMultiAlternatives(subject=subject, body=text_content, from_email=from_email, to=[from_email], bcc=to)
+            msg = EmailMultiAlternatives(subject=subject, body=text_content, from_email=from_email, to=[from_email],
+                                         bcc=to)
             msg.attach_alternative(html_content, "text/html")
             msg.send()
 
@@ -92,10 +96,22 @@ def send_mail(modeladmin, request, queryset):
     return render(request, 'event/send_mail.html', {'events': queryset,
                                                     'send_mail_form': form,
                                                     })
+
+
 send_mail.short_description = "Enviar e-mail para os inscritos dos eventos selecionados"
 
 
+class EventModelAdminForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = '__all__'
+        widgets = {
+            'description': SummernoteWidget(),
+        }
+
+
 class EventModelAdmin(CustomModelAdmin):
+    form = EventModelAdminForm
     list_display = ('title', 'date', 'date_limit_subscription')
     search_fields = ('title', 'description')
     filter_horizontal = ('organizers',)
@@ -116,6 +132,8 @@ def print_subscriptions_list(modeladmin, request, queryset):
         'subscriptions': queryset
     }
     return render(request, 'event/print_subscriptions_list.html', context)
+
+
 print_subscriptions_list.short_description = "Imprimir os participantes selecionados"
 
 
@@ -128,7 +146,7 @@ class SubscriptionProxyAdmin(CustomModelAdmin):
     list_filter = (
         ('event', RelatedOnlyFieldListFilter),
     )
-    actions = [print_subscriptions_list,]
+    actions = [print_subscriptions_list, ]
 
     def get_queryset(self, request):
         qs = super(SubscriptionProxyAdmin, self).get_queryset(request)

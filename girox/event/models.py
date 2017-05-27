@@ -1,7 +1,6 @@
 from django.db import models
 from django.shortcuts import resolve_url as r
 from django.conf import settings
-import datetime
 from girox.event.validators import validate_cpf
 
 
