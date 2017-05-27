@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from django.contrib import messages
 import datetime
 
+from girox.advertising.models import Advertiser
 from girox.event.models import Event
 from girox.frontend.forms import ContactForm
 from girox.gallery.models import Album
@@ -16,6 +17,7 @@ class HomePageView(TemplateView):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['event_list'] = Event.objects.filter(date__gte=datetime.datetime.now()).all()[:5]
         context['album_list'] = Album.objects.all()[:5]
+        context['advertiser_list'] = Advertiser.objects.all()
         return context
 
 

@@ -68,12 +68,12 @@
 
         </div>
 
-    <!-- Upload Photos -->
-                {% if user.is_staff and perms.gallery.add_photo %}
-                    <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
-                        {% csrf_token %}
-                    </form>
-                {% endif %}
+        <!-- Upload Photos -->
+        {% if user.is_staff and perms.gallery.add_photo %}
+            <form id="add-photos" action="{% url 'galleries:ajax_photo_upload_view' album.id %}" class="dropzone">
+                {% csrf_token %}
+            </form>
+        {% endif %}
 
 
     </div>

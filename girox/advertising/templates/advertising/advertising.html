@@ -9,8 +9,7 @@
     </div>
 </div>
 
-
-<div class="card">
+<!-- <div class="card">
     <a rel="nofollow" target="_blank"
        href="https://www.facebook.com/fisioterapiasarafolk/">
         <div class="img-responsive">
@@ -18,7 +17,23 @@
                  title="Fisioterapia <b>Sara Folk</b>" data-placement="bottom" data-html="true">
         </div>
     </a>
-</div>
+</div> -->
+
+{% if advertiser_list %}
+    {% for advertiser in advertiser_list %}
+        {% if advertiser.is_public or perms.advertising.add_advertiser %}
+        <div class="card">
+            <a rel="nofollow" target="_blank"
+               href="{{ advertiser.link }}">
+                <div class="img-responsive">
+                    <img src="{{ advertiser.banner.crop.300x250 }}" alt="{{ advertiser.title }}" rel="tooltip"
+                         title="{{ advertiser.title }}" data-placement="bottom" data-html="true">
+                </div>
+            </a>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 <div class="card">
     <a rel="nofollow" href="{% url 'plans' %}">

@@ -247,6 +247,10 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
         # ('modal_photo', 'thumbnail__600x600'),
         ('modal_photo', 'thumbnail__1200x1200'),
     ],
+    'advertiser': [
+        ('banner', 'thumbnail__300x250'),
+        ('banner_crop', 'crop__300x250'),
+    ],
 }
 
 
