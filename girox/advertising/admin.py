@@ -7,7 +7,7 @@ class AdvertiserModelAdmin(CustomModelAdmin):
     list_display = ('title_tags', 'link_tags', 'admin_thumbnail')
 
     def admin_thumbnail(self, obj):
-        return u'<img src="%s" />' % obj.banner.thumbnail['300x250'].url
+        return u'<img src="%s" />' % obj.banner.crop['300x250'].url
 
     admin_thumbnail.short_description = 'Thumbnail'
     admin_thumbnail.allow_tags = True
