@@ -68,7 +68,7 @@
                 </div>
                 {% endif %}
 
-                <div class="col-md-6{% if not event_list %} col-md-offset-3{% endif %}">
+                <div class="{% if not event_list %}col-md-10 col-md-offset-1{% else %}col-md-6{% endif %}">
                     <h2 class="title">Galeria de Fotos</h2>
                     <br />
                     <div class="card card-plain card-blog">
