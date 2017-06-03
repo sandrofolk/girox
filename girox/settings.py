@@ -100,6 +100,7 @@ PROJECT_APPS = (
     'girox.event.apps.EventConfig',
     'girox.gallery.apps.GalleryConfig',
     'girox.advertising.apps.AdvertisingConfig',
+    'girox.blog.apps.BlogConfig',
 
     'girox.frontend',
 )

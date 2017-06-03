@@ -1,0 +1,54 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+    <div class="section landing-section">
+        <div class="row">
+            <div class="col-sm-9 col-lg-10">
+
+
+                <div class="cards">
+                    <div class="container">
+                        <div class="title">
+                            <h1 class="title">Blog</h1>
+                        </div>
+                        <div class="row">
+                            {% if post_list %}
+                                {% for post in post_list %}
+                                    {% if post.is_published or perms.blog.add_post %}
+                                    <div class="col-md-6">
+                                        <div class="card card-blog section-light-gray">
+                                            {% comment %}
+                                            <div class="card-image">
+                                                <a href="{{ post.get_absolute_url }}">
+                                                    <img class="img" src="{{ post.cover_photo.file.thumbnail.1200x1200 }}" />
+                                                </a>
+                                            </div>
+                                            {% endcomment %}
+
+                                            <div class="card-content">
+                                                <h2 class="title"><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
+                                                <h6 class="category text-info">Publicado em {{ post.posted }}</h6>
+                                                <p class="card-description">
+                                                    {% if post.body %}{{ post.body|safe }}{% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-lg-2">
+                {% include 'advertising/advertising.html' %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}
