@@ -1,5 +1,4 @@
-# from django.shortcuts import render
-from django.views.generic import View, ListView, DetailView
+from django.views.generic import View, DetailView
 
 from braces.views import (
     AjaxResponseMixin,
@@ -10,12 +9,13 @@ from braces.views import (
     PermissionRequiredMixin,
 )
 
+from girox.advertising.mixins import ListViewAdvertiser, DetailViewAdvertiser
 from girox.gallery.models import Album, Photo
 
 
-album_list = ListView.as_view(model=Album)
+album_list = ListViewAdvertiser.as_view(model=Album)
 
-album_detail = DetailView.as_view(model=Album)
+album_detail = DetailViewAdvertiser.as_view(model=Album)
 
 # album_detail_test = DetailView.as_view(model=Album, template_name="gallery/album_detail_test.html")
 

@@ -32,9 +32,24 @@
                 <hr />
 
                 <div class="row col-lg-12">
-                    <h1 class="title">{{ post.title }}</h1>
-                    <p class="muted"><small>Publicado em {{ post.posted }}</small></p>
-                    {% if post.body %}<p>{{ post.body|safe }}</p>{% endif %}
+
+                    <div class="card card-plain card-blog">
+
+                        <h1 class="title">{{ post.title }}</h1>
+                        <p class="muted"><small>Publicado em {{ post.posted }}</small></p>
+
+                        {% if post.cover_photo %}
+                            <div class="card-image">
+                                <img class="img-rounded img-responsive img-raised center-block"
+                                     alt="{{ post.title }}" src="{{ post.cover_photo.url }}">
+                                <br />
+                            </div>
+                        {% endif %}
+
+                        {% if post.body %}<p>{{ post.body|safe }}</p>{% endif %}
+
+                    </div>
+
                 </div>
             </div>
 

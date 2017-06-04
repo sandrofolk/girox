@@ -1,6 +1,5 @@
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from django.contrib import messages
 import datetime
 
 from girox.advertising.models import Advertiser

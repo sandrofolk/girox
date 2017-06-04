@@ -255,6 +255,9 @@ VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
         # ('banner', 'thumbnail__300x250'),
         ('banner_crop', 'crop__300x250'),
     ],
+    'blog': [
+        ('post_thumbnail', 'thumbnail__650x650'),
+    ],
 }
 
 
