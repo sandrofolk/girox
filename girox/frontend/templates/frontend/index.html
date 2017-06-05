@@ -84,8 +84,10 @@
                                                 {% if album.is_public or perms.gallery.add_photo %}
                                                 <div class="item {% if forloop.first %}active{% endif %}">
                                                     {% if album.cover_photo %}
+                                                        <a href="{% url 'galleries:album_detail' album.pk %}">
                                                         <img src="{{ album.cover_photo.file.thumbnail.1200x1200 }}"
                                                              alt="{{ album.cover_photo.title }}">
+                                                        </a>
                                                     {% endif %}
 
                                                     <h4 class="card-title">
