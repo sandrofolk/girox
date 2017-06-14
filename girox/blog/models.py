@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 # from django.shortcuts import resolve_url as r
@@ -23,6 +24,7 @@ class Post(models.Model):
                                                  'visualizado pelo público!')
     meta_description = models.TextField('meta descrição')
     cover_photo = VersatileImageField('foto de capa', upload_to=post_directory_path, blank=True, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='autor')
 
     def __str__(self):
         return self.title
