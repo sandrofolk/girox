@@ -2,6 +2,9 @@
     max-height: 50px;
 }
 
-/*.modal .modal-dialog.modal-photo {*/
-    /*width: 90%;*/
-/*}*/
+.blog-post-section-text p {
+    font-size: 1.35em;
+    line-height: 1.5em;
+    color: #555;
+    margin-bottom: 30px;
+}
