@@ -16,7 +16,7 @@ class Post(models.Model):
     title = models.CharField('título', max_length=100, unique=True)
     slug = models.SlugField('url', max_length=100, unique=True)
     body = models.TextField('corpo')
-    posted = models.DateField('data', db_index=True, auto_now_add=True)
+    posted = models.DateField('data', db_index=True)
     category = models.ForeignKey('blog.Category', verbose_name='categoria')
     tags = TaggableManager(blank=True)
     is_published = models.BooleanField('publicado?', default=False,
