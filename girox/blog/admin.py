@@ -26,7 +26,7 @@ class PostModelAdminForm(forms.ModelForm):
 
 class PostModelAdmin(CustomModelAdmin):
     form = PostModelAdminForm
-    exclude = ['posted']
+    # exclude = ['posted']
     prepopulated_fields = {'slug': ('title',)}
 
 
