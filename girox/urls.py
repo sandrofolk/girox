@@ -40,6 +40,7 @@ if settings.DEVELOPER:
 urlpatterns += i18n_patterns(
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^retorno/pagseguro/', include('pagseguro.urls')),
 
     url(_(r'^admin/'), admin.site.urls),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},

@@ -92,6 +92,7 @@ THIRD_PARTS_APPS = (
     # 'easy_thumbnails',
     'versatileimagefield',  # http://django-versatileimagefield.readthedocs.io/en/latest/index.html
     'django_summernote',
+    'pagseguro',
 )
 
 PROJECT_APPS = (
@@ -297,3 +298,12 @@ SUMMERNOTE_CONFIG = {
     # You can disable file upload feature.
     'disable_upload': True,
 }
+
+
+# http://django-pagseguro-2.readthedocs.io/pt_BR/2.0.0/index.html
+
+PAGSEGURO_EMAIL = config('PAGSEGURO_EMAIL')
+PAGSEGURO_TOKEN = config('PAGSEGURO_TOKEN')
+PAGSEGURO_SANDBOX = config('PAGSEGURO_SANDBOX', cast=bool)  # se o valor for True, as requisições a api serão feitas usando o PagSeguro Sandbox.
+PAGSEGURO_LOG_IN_MODEL = config('PAGSEGURO_LOG_IN_MODEL', cast=bool)  # se o valor for True, os checkouts e transações vão ser logadas no database.
+SECURE_REDIRECT_EXEMPT = 'retorno/pagseguro/'

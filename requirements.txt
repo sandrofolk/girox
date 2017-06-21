@@ -25,3 +25,4 @@ django-versatileimagefield==1.7.0
 
 django-jet==1.0.6
 django-summernote==0.8.7
+django-pagseguro2==2.0.0
