@@ -39,6 +39,10 @@ plans = TemplateView.as_view(
     template_name='frontend/plans.html'
 )
 
+test = TemplateView.as_view(
+    template_name='frontend/test.html'
+)
+
 # home = TemplateView.as_view(
 #     template_name='frontend/index.html'
 # )

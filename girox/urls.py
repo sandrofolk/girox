@@ -23,7 +23,7 @@ from django.contrib.sitemaps.views import sitemap
 # from photologue.sitemaps import GallerySitemap, PhotoSitemap
 # from django.views.generic.base import RedirectView
 # from girox.frontend.views import home
-from girox.frontend.views import HomePageView, ContactView, contact_success, plans
+from girox.frontend.views import HomePageView, ContactView, contact_success, plans, test
 
 
 # sitemaps = {
@@ -56,6 +56,7 @@ urlpatterns += i18n_patterns(
     url(r'^contato/$', ContactView.as_view(), name='contact'),
     url(r'^contato/sucesso/', contact_success, name='contact_success'),
     url(r'^planos/', plans, name='plans'),
+    url(r'^test/', test, name='test'),
 
     # url(r'^fotos/', include('photologue.urls', namespace='photologue')),
 
