@@ -5,7 +5,7 @@
     <meta property="og:title" content="{{ post.title }}" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     {% if post.cover_photo %}
-    <meta property="og:image" content="{{ post.cover_photo.get_absolute_url }}" />
+    <meta property="og:image" content="{{ post.cover_photo.url }}" />
     {% endif %}
     <meta property="og:description" content="{{ post.meta_description|safe|escape }}" />
     <meta property="og:site_name" content="GiroX" />
@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="{{ post.title }}">
     <meta name="twitter:description" content="{{ post.meta_description|safe|escape }}">
     <meta name="twitter:creator" content="@giroxesportes">
-    <meta name="twitter:image" content="{{ post.cover_photo.get_absolute_url }}">
+    <meta name="twitter:image" content="{{ post.cover_photo.url }}">
     <meta name="twitter:domain" content="www.girox.com.br">
 {% endblock twitter %}
 
