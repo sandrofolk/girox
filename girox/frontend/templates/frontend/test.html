@@ -1,8 +1,12 @@
-<html>
+{% load static from staticfiles %}
+{% load i18n %}
+<!doctype html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:"pt-br" }}">
     <head>
         <title>test</title>
     </head>
     <body>
-        bla bla bla
+        v2
     </body>
 </html>
